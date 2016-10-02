@@ -35,21 +35,25 @@
       channel_id: 1,
       author_id: 1,
       body: "palmate or pinnate?",
+      edited: false,
     },
     2: {
       channel_id: 1,
       author_id: 2,
       body: 'i like both',
+      edited: false,
     },
     3: {
       channel_id: 2,
       author_id: 1,
       body: 'dude, wake up!',
+      edited: false,
     }
     4: {
       channel_id: 2,
       author_id: 2,
       body: 'sorry i overslept again',
+      edited: true,
     }
   }
 }
