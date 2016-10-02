@@ -7,6 +7,13 @@
 - Sidebar
 - Channel
 - Search
+- MessagesIndex
+  + MessageContainer
+    * Message
+
+
+**ChannelsIndex**
+- ChannelsIndexItem
 
 **DetailContainer**
 - Detail

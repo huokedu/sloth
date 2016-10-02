@@ -19,10 +19,6 @@
         {id: 1, username: 'buttercup'},
         {id: 2, username: 'sid'},
       ],
-      messages: [
-        {id: 1, author: 'buttercup', body: 'palmate or pinnate?'},
-        {id: 2, author: 'sid', body: 'i like both'},
-      ],
     },
     2: {
       name: '@buttercup,sid',
@@ -32,11 +28,29 @@
         {id: 1, username: 'buttercup'},
         {id: 2, username: 'sid'},
       ],
-      messages: [
-        {id: 1, author: 'buttercup', body: 'dude, wake up!'},
-        {id: 2, author: 'sid', body: 'sorry i overslept again'},
-      ],
     },
   },
+  messages: {
+    1: {
+      channel_id: 1,
+      author_id: 1,
+      body: "palmate or pinnate?",
+    },
+    2: {
+      channel_id: 1,
+      author_id: 2,
+      body: 'i like both',
+    },
+    3: {
+      channel_id: 2,
+      author_id: 1,
+      body: 'dude, wake up!',
+    }
+    4: {
+      channel_id: 2,
+      author_id: 2,
+      body: 'sorry i overslept again',
+    }
+  }
 }
 ```
