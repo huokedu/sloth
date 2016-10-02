@@ -19,7 +19,7 @@ Sloth is a web application inspired by Slack built using Ruby on Rails and React
 ## Design Docs
 
 * [View wireframes](wireframes)
-* [React components](component-heirarchy.md)
+* [React components](component-hierarchy.md)
 * [API endpoints](api-endpoints.md)
 * [DB schema](schema.md)
 * [Redux structure](redux-structure.md)
