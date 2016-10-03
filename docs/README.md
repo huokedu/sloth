@@ -1,6 +1,6 @@
 # Sloth
 
-[Heroku link](http://sloth-messenger.herokuapp.com/)
+[Heroku link](http://sloth-chat.herokuapp.com/)
 
 ## Minimum Viable Product
 
