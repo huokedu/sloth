@@ -1,4 +1,4 @@
-export const signup = (success, error, params) => {
+export const signUp = (success, error, params) => {
   $.ajax({
     method: 'POST',
     url: 'api/users',
@@ -6,7 +6,7 @@ export const signup = (success, error, params) => {
   });
 };
 
-export const signin = (success, error, params) => {
+export const signIn = (success, error, params) => {
   $.ajax({
     method: 'POST',
     url: 'api/session',
@@ -14,7 +14,7 @@ export const signin = (success, error, params) => {
   });
 };
 
-export const signout = (success, error) => {
+export const signOut = (success, error) => {
   $.ajax({
     method: 'DELETE',
     url: 'api/session',
