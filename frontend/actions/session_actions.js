@@ -4,14 +4,14 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
-export const signIn = (user) => ({
+export const signIn = (userParams) => ({
   type: SIGN_IN,
-  user,
+  userParams,
 });
 
-export const signUp = (user) => ({
+export const signUp = (userParams) => ({
   type: SIGN_UP,
-  user,
+  userParams,
 });
 export const signOut = () => ({
   type: SIGN_OUT,
