@@ -49,7 +49,7 @@ class SignInForm extends React.Component {
     return(
       <div className="session-form">
         <h2>Sign in to Sloth</h2>
-        <subtitle>Enter your username and password.</subtitle>
+        <span>Enter your username and password.</span>
 
         <form onSubmit={this.handleSubmit}>
           <input
