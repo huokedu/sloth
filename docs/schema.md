@@ -9,6 +9,14 @@ email           | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 
+## channel memberships
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+member_id       | integer    | not null, indexed, unique
+channel_id      | integer   | not null, indexed, unique
+
+
 ## channels
 column name | data type | details
 ------------|-----------|-----------------------
