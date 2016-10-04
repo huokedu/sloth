@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
-import { signIn, signUp, signOut } from './actions/session_actions';
+import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.signIn = signIn;
-  window.signUp = signUp;
-  window.signOut = signOut;
-  window.store = configureStore();
+  let store;
+
+  if (window.currentUser) {
+    const preloadedState = {
+      currentUser: window.currentUser,
+    };
+    store = configureStore(preloadedState);
+  } else {
+    store = configureStore();
+  }
+
+  window.store = store;
+
   const root = document.getElementById('root');
-  ReactDOM.render(<h1>Sloth</h1>, root);
+  ReactDOM.render(<Root store={store} />, root);
 });
