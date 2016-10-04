@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Home from './home';
 import SignInFormContainer from './session_forms/signin_form_container';
 import SignUpFormContainer from './session_forms/signup_form_container';
-import Home from './home';
 import ChannelsContainer from './channels/channels_container';
 
 const Root = ({ store }) => (

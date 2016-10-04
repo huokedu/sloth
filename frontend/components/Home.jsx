@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-function Home({ children, currentUser }) {
+const Home = ({ children, currentUser }) => {
   let button;
 
   if (currentUser.id) {
@@ -20,7 +20,7 @@ function Home({ children, currentUser }) {
       {children || <div className="tagline"><h2>A messaging app for teams</h2><h2>who eat leaves all day!!</h2></div>}
     </div>
   );
-}
+};
 
 const mapStateToProps = ({ currentUser }) => ({ currentUser });
 
