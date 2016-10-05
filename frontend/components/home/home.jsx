@@ -1,9 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-const Home = ({ children, currentUser }) => {
+const Home = ({ children, currentUser, location }) => {
   let button;
+  let background;
 
   if (currentUser.id) {
     button = <Link className="nav-button" to="/channels">Signed in as {currentUser.username}</Link>;
@@ -11,8 +11,14 @@ const Home = ({ children, currentUser }) => {
     button = <Link className="nav-button" to="/signin">Sign in</Link>;
   }
 
+  if (location.pathname === '/') {
+    background = 'home-cover';
+  } else {
+    background = 'home-form';
+  }
+
   return (
-    <div>
+    <div className={"home " + background}>
       <nav className="group">
         <h1 className="logo"><Link to="/">sloth</Link></h1>
         {button}
@@ -22,8 +28,4 @@ const Home = ({ children, currentUser }) => {
   );
 };
 
-const mapStateToProps = ({ currentUser }) => ({ currentUser });
-
-export default connect(
-  mapStateToProps
-)(Home);
+export default Home;

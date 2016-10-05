@@ -49,15 +49,17 @@ class SignInForm extends React.Component {
     return(
       <div className="session-form">
         <h2>Sign in to Sloth</h2>
-        <span>Enter your username and password.</span>
+        <h3>Enter your <b>username</b> and <b>password</b>.</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
+            placeholder="username"
             value={this.state.username}
             onChange={this.updateInput('username')} />
           <input
             type="password"
+            placeholder="password"
             value={this.state.password}
             onChange={this.updateInput('password')} />
           <input type="submit" value="Sign in"/>

@@ -35,8 +35,9 @@ class Channels extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.signOut}>Sign out of Sloth</button>
         {this.state.channels}
+        <br/>
+        <button onClick={this.signOut}>Sign out of Sloth</button>
       </div>
     );
   }

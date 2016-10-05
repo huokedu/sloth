@@ -39,20 +39,23 @@ class SignUpForm extends React.Component {
     return(
       <div className="session-form">
         <h2>Sign in to Sloth</h2>
-        <span>Enter your username and password.</span>
+        <h3>Enter your username, email, and password.</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             value={this.state.username}
+            placeholder="username"
             onChange={this.updateInput('username')} />
           <input
             type="text"
             value={this.state.email}
+            placeholder="you@domain.com"
             onChange={this.updateInput('email')} />
           <input
             type="password"
             value={this.state.password}
+            placeholder="password"
             onChange={this.updateInput('password')} />
           <input type="submit" value="Sign up"/>
         </form>
