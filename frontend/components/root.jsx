@@ -5,7 +5,7 @@ import HomeContainer from './home/home_container';
 import SignInFormContainer from './session_forms/signin_form_container';
 import SignUpFormContainer from './session_forms/signup_form_container';
 import ChannelsIndexContainer from './channels/channels_index_container';
-import { requestSubscribedChannels } from '../actions/channel_actions';
+import { requestAllChannels } from '../actions/channel_actions';
 
 const Root = ({ store }) => {
   function redirectUnlessLoggedIn() {
@@ -14,9 +14,9 @@ const Root = ({ store }) => {
     }
   }
 
-  function fetchSubscribedChannels() {
+  function fetchAllChannels() {
     redirectUnlessLoggedIn();
-    store.dispatch(requestSubscribedChannels());
+    store.dispatch(requestAllChannels());
   }
 
   return (
@@ -26,7 +26,7 @@ const Root = ({ store }) => {
           <Route path="signin" component={SignInFormContainer} />
           <Route path="signup" component={SignUpFormContainer} />
         </Route>
-        <Route path="/channels" component={ChannelsIndexContainer} onEnter={fetchSubscribedChannels} />
+        <Route path="/channels" component={ChannelsIndexContainer} onEnter={fetchAllChannels} />
       </Router>
     </Provider>
   );

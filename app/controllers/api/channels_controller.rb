@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.joins(:members).where('users.id = ?', current_user.id)
+    @channels = Channel.all
   end
 
   def show
