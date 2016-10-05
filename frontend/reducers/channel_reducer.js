@@ -1,6 +1,6 @@
 import { RECEIVE_ALL_CHANNELS, SWITCH_CHANNEL } from '../actions/channel_actions';
 
-const ChannelReducer = (state = {currentChannel: 1, allChannels: {}}, action) => {
+const ChannelReducer = (state = {currentChannel: 2, allChannels: {}}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_CHANNELS: {
       const newState = Object.assign({}, state);

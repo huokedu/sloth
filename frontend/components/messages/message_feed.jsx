@@ -2,8 +2,30 @@ import React from 'react';
 
 const MessageFeed = ({ channel }) => (
   <section className="message-feed">
-    <h2>{channel.name}</h2>
-    <h2>Messages coming soon :)</h2>
+    <header>
+      <h2>{channel.name}</h2>
+      <small>{channel.members.length} members | {channel.purpose}</small>
+    </header>
+    <p className="message-feed-main">
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+      Messages coming soon :)<br />
+    </p>
   </section>
 );
 
