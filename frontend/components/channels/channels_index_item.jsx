@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const ChannelsIndexItem = ({ channel }) => {
   return(
-    <li key={channel.id}><Link to={"messages/" + channel.name}>{channel.name}</Link></li>
+    <li key={channel.id}><Link to={"messages/" + channel.id}>{channel.name}</Link></li>
   );
 };
 

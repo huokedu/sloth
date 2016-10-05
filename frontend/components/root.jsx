@@ -6,7 +6,7 @@ import SignInFormContainer from './session_forms/signin_form_container';
 import SignUpFormContainer from './session_forms/signup_form_container';
 import ChannelsIndexContainer from './channels/channels_index_container';
 import MessageFeedContainer from './messages/message_feed_container';
-import { requestAllChannels } from '../actions/channel_actions';
+import { requestAllChannels, switchChannel } from '../actions/channel_actions';
 
 const Root = ({ store }) => {
   function redirectUnlessLoggedIn() {
@@ -20,6 +20,10 @@ const Root = ({ store }) => {
     store.dispatch(requestAllChannels());
   }
 
+  function changeCurrentChannel(nextState) {
+    store.dispatch(switchChannel(nextState.params.channelId));
+  }
+
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
@@ -28,7 +32,7 @@ const Root = ({ store }) => {
           <Route path="signup" component={SignUpFormContainer} />
         </Route>
         <Route path="/messages" component={ChannelsIndexContainer} onEnter={fetchAllChannels}>
-          <Route path=":channelName" component={MessageFeedContainer} />
+          <Route path=":channelId" component={MessageFeedContainer} onEnter={changeCurrentChannel} />
         </Route>
       </Router>
     </Provider>
