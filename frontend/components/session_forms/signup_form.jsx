@@ -31,7 +31,7 @@ class SignUpForm extends React.Component {
 
   redirectIfLoggedIn(){
     if (this.props.loggedIn) {
-      hashHistory.push("/channels");
+      hashHistory.push("/messages");
     }
   }
 

@@ -3,7 +3,7 @@ import { signOut } from '../../actions/session_actions';
 import ChannelsIndex from './channels_index';
 
 const mapStateToProps = ({ channels, currentUser }) => ({
-  channels,
+  channels: channels.allChannels,
   currentUser,
 });
 

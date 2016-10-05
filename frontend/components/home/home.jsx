@@ -6,7 +6,7 @@ const Home = ({ children, currentUser, location }) => {
   let background;
 
   if (currentUser.id) {
-    button = <Link className="nav-button" to="/channels">Signed in as {currentUser.username}</Link>;
+    button = <Link className="nav-button" to="/messages">Signed in as {currentUser.username}</Link>;
   } else {
     button = <Link className="nav-button" to="/signin">Sign in</Link>;
   }
