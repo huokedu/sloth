@@ -20,5 +20,4 @@ class Channel < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :creator, presence: true
-
 end

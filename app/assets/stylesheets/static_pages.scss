@@ -17,7 +17,7 @@ html, body, h1, h2, h3, p, ul, ol, div, span, a, button, input {
 }
 
 ul {
-  text-decoration: none;
+  list-style: none;
 }
 
 .group:after {
@@ -171,6 +171,157 @@ body {
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+}
+
+.sidebar {
+  float: left;
+  height: 100%;
+  display: block;
+  width: 220px;
+  background: #4d394b;
+  color: #ab9ba9;
+  -webkit-font-smoothing: antialiased;
+  position: fixed;
+}
+
+.sidebar-header {
+  height: 60px;
+  cursor: pointer;
+  padding: 0 20px;
+  position: relative;
+
+  &:hover {
+    background: rgb(62, 49, 60);
+
+    .sidebar-username {
+      color: #fff;
+    }
+
+    .sidebar-logo:after {
+      color: #fff;
+    }
+  }
+
+  &.toggled {
+    background: rgb(62, 49, 60);
+
+    .sidebar-username {
+      color: #fff;
+    }
+
+    .sidebar-dropdown {
+      display: block;
+    }
+
+    .sidebar-logo:after {
+      color: #fff;
+    }
+  }
+}
+
+.sidebar-logo {
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    left: 55px;
+    top: 12px;
+    display: inline-block;
+    color: #ab9ba9;
+    font-weight: 900;
+    content: "⌵";
+    font-size: 14px;
+    opacity: .6;
+  }
+}
+
+.sidebar-username {
+  font-size: 14px;
+
+  &:before {
+    display: inline-block;
+    content: "●";
+    font-size: 20px;
+    line-height: .8;
+    padding-right: 2px;
+    position: relative;
+    top: 1px;
+    color: #38978D;
+  }
+}
+
+.sidebar-dropdown {
+  z-index: 99;
+  cursor: default;
+  padding: 20px 20px 10px;
+  position: absolute;
+  top: 56px;
+  left: 10px;
+  color: #2c2d30;
+  background: #fff;
+  border-radius: 6px;
+  display: none;
+  width: 270px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.12);
+  border: 1px solid rgba(0,0,0,.15);
+
+  h2 {
+    font-weight: 900;
+    color: #555459;
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+    color: #A0A0A2;
+  }
+
+  ul {
+    padding-top: 10px;
+
+    button {
+      padding: 0 5px;
+      line-height: 1.5;
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(58, 163, 227);
+        color: #fff;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.sidebar-subheading {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px 0;
+
+  span {
+    opacity: .6;
+  }
+}
+
+.channel-list {
+  li {
+    padding: 5px 20px 0;
+
+    &:before {
+      content: "# ";
+      font-size: 14px;
+      opacity: .6;
     }
   }
 }
