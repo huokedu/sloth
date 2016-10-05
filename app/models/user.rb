@@ -14,6 +14,16 @@
 class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
+  has_many :created_channels,
+    class_name: 'Channel',
+    foreign_key: :creator_id
+  has_many :channel_memberships,
+    foreign_key: :member_id
+  has_many :subscribed_channels,
+    through: :channel_memberships,
+    source: :channel
+
+
   validates :username, :email, :session_token,
     presence: true, uniqueness: true
   validates :password_digest, presence: true
