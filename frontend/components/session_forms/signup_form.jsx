@@ -35,30 +35,47 @@ class SignUpForm extends React.Component {
     }
   }
 
+  displayErrors() {
+    if (this.props.errors.length) {
+      return(
+        <ul>
+          {this.props.errors.map((error, index) => <span className="error" key={index}>{error}</span>)}
+        </ul>
+      );
+    }
+  }
+
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   render() {
     return(
-      <div className="session-form">
-        <h2>Sign in to Sloth</h2>
-        <h3>Enter your username, email, and password.</h3>
+      <div>
+        {this.displayErrors()}
+        <div className="session-form">
+          <h2>Sign in to Sloth</h2>
+          <h3>Enter your <b>username</b>, <b>email</b>, and <b>password</b>.</h3>
 
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.username}
-            placeholder="username"
-            onChange={this.updateInput('username')} />
-          <input
-            type="text"
-            value={this.state.email}
-            placeholder="you@domain.com"
-            onChange={this.updateInput('email')} />
-          <input
-            type="password"
-            value={this.state.password}
-            placeholder="password"
-            onChange={this.updateInput('password')} />
-          <input type="submit" value="Sign up"/>
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              value={this.state.username}
+              placeholder="username"
+              onChange={this.updateInput('username')} />
+            <input
+              type="text"
+              value={this.state.email}
+              placeholder="you@domain.com"
+              onChange={this.updateInput('email')} />
+            <input
+              type="password"
+              value={this.state.password}
+              placeholder="password"
+              onChange={this.updateInput('password')} />
+            <input type="submit" value="Sign up"/>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
-import { signUp } from '../../actions/session_actions';
+import { signUp, clearErrors } from '../../actions/session_actions';
 import SignUpForm from './signup_form';
 
-const mapStateToProps = ({ currentUser }) => ({
+const mapStateToProps = ({ currentUser, errors }) => ({
   loggedIn: (currentUser.id),
+  errors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signUp: (userParams) => dispatch(signUp(userParams)),
+  clearErrors: () => dispatch(clearErrors()),
 });
 
 export default connect(

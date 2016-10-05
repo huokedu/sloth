@@ -35,11 +35,21 @@ class SignInForm extends React.Component {
 		this.redirectIfLoggedIn();
 	}
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
 	redirectIfLoggedIn(){
 		if (this.props.loggedIn) {
 			hashHistory.push("/channels");
 		}
 	}
+
+  displayErrors() {
+    if (this.props.errors.length) {
+      return <span className="error">Sorry, you entered an incorrect username or password.</span>;
+    }
+  }
 
   render() {
     const guestAccount = (
@@ -47,25 +57,28 @@ class SignInForm extends React.Component {
     );
 
     return(
-      <div className="session-form">
-        <h2>Sign in to Sloth</h2>
-        <h3>Enter your <b>username</b> and <b>password</b>.</h3>
+      <div>
+        {this.displayErrors()}
+        <div className="session-form">
+          <h2>Sign in to Sloth</h2>
+          <h3>Enter your <b>username</b> and <b>password</b>.</h3>
 
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="username"
-            value={this.state.username}
-            onChange={this.updateInput('username')} />
-          <input
-            type="password"
-            placeholder="password"
-            value={this.state.password}
-            onChange={this.updateInput('password')} />
-          <input type="submit" value="Sign in"/>
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="username"
+              value={this.state.username}
+              onChange={this.updateInput('username')} />
+            <input
+              type="password"
+              placeholder="password"
+              value={this.state.password}
+              onChange={this.updateInput('password')} />
+            <input type="submit" value="Sign in"/>
+          </form>
 
-        <span>Don't have an account? <Link to="/signup">Sign up</Link> or browse using a {guestAccount}.</span>
+          <span>Don't have an account? <Link to="/signup">Sign up</Link> or browse using a {guestAccount}.</span>
+        </div>
       </div>
     );
   }
