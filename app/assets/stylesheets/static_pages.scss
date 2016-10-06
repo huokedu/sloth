@@ -303,7 +303,7 @@ body {
   }
 }
 
-.sidebar-subheading {
+.sidebar-subheading button {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
@@ -311,6 +311,10 @@ body {
 
   span {
     opacity: .6;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -385,4 +389,41 @@ body {
   width: 100%;
   position: relative;
   z-index: -2;
+}
+
+.channel-search {
+  width: 640px;
+  margin: auto;
+  color: #555459;
+  -webkit-font-smoothing: antialiased;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 900;
+    padding-bottom: 40px;
+    color: #2c2d30;
+  }
+
+  .channel-search-item {
+    padding: 12px 0 12px 10px;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .channel-search-name {
+    font-weight: 700;
+    &:before {
+      content: "# ";
+      font-size: 14px;
+      opacity: .6;
+    }
+  }
+
+  .channel-search-info {
+    font-style: italic;
+    color: #9e9ea6;
+
+    b {
+      color: #67686e;
+    }
+  }
 }

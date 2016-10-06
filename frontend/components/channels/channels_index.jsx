@@ -1,7 +1,7 @@
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
-import Modal from 'react-modal';
+import ChannelSearch from './channel_search';
 
 class ChannelsIndex extends React.Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class ChannelsIndex extends React.Component {
 
 
     this.state = {
-      dropdown: false
+      dropdown: false,
+      channelSearchOpen: false,
     };
 
     this.signOut = this.signOut.bind(this);
@@ -28,6 +29,14 @@ class ChannelsIndex extends React.Component {
 
   toggleClass() {
     return (this.state.dropdown) ? " toggled" : "";
+  }
+
+  openChannelSearch() {
+    this.setState({ channelSearchOpen: true });
+  }
+
+  closeChannelSearch() {
+    this.setState({ channelSearchOpen: false });
   }
 
   render() {
@@ -62,14 +71,19 @@ class ChannelsIndex extends React.Component {
             </div>
           </div>
           <h3 className="sidebar-subheading">
-            Channels <span>({totalNumChannels})</span>
+            <button onClick={this.openChannelSearch.bind(this)}>
+              Channels <span>({totalNumChannels})</span>
+            </button>
           </h3>
           <ul className="channel-list">
             { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
           </ul>
         </section>
-        <Modal isOpen={false} />
         {this.props.children}
+        <ChannelSearch
+          isOpen={this.state.channelSearchOpen}
+          closeChannelSearch={this.closeChannelSearch.bind(this)}
+          allChannels={this.props.allChannels} />
       </div>
     );
   }
