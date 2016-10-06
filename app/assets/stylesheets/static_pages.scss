@@ -393,7 +393,7 @@ body {
 
 .channel-search {
   width: 640px;
-  margin: auto;
+  margin: 100px auto;
   color: #555459;
   -webkit-font-smoothing: antialiased;
 
@@ -407,6 +407,10 @@ body {
   .channel-search-item {
     padding: 12px 0 12px 10px;
     border-top: 1px solid #e8e8e8;
+
+    &:last-child {
+      border-bottom: 1px solid #e8e8e8;
+    }
   }
 
   .channel-search-name {
