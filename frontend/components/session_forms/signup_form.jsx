@@ -54,7 +54,7 @@ class SignUpForm extends React.Component {
       <div>
         {this.displayErrors()}
         <div className="session-form">
-          <h2>Sign in to Sloth</h2>
+          <h2>Sign up for Sloth</h2>
           <h3>Enter your <b>username</b>, <b>email</b>, and <b>password</b>.</h3>
 
           <form onSubmit={this.handleSubmit}>
