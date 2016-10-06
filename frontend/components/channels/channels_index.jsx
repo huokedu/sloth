@@ -31,10 +31,11 @@ class ChannelsIndex extends React.Component {
 
   render() {
     const username = this.props.currentUser.username;
-    const channels = [];
-    for (let id in this.props.channels) {
-      channels.push(this.props.channels[id]);
+    const subscribedChannels = [];
+    for (let id in this.props.subscribedChannels) {
+      subscribedChannels.push(this.props.subscribedChannels[id]);
     }
+    const totalNumChannels = Object.keys(this.props.allChannels).length;
 
     return(
       <div className="group">
@@ -51,9 +52,9 @@ class ChannelsIndex extends React.Component {
               </ul>
             </div>
           </div>
-          <h3 className="sidebar-subheading">Channels <span>({channels.length})</span></h3>
+          <h3 className="sidebar-subheading">Channels <span>({totalNumChannels})</span></h3>
           <ul className="channel-list">
-            { channels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} />) }
+            { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
           </ul>
         </section>
         {this.props.children}
