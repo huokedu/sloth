@@ -354,11 +354,11 @@ body {
     height: 60px;
     position: fixed;
     top: 0;
-    z-index: 666;
     width: 100%;
     background: #fff;
     height: 60px;
     border-bottom: 1px solid #e8e8e8;
+    z-index: -1;
 
     h2 {
       padding: 8px 20px 0;
@@ -384,5 +384,5 @@ body {
   display: block;
   width: 100%;
   position: relative;
-  z-index: -1;
+  z-index: -2;
 }
