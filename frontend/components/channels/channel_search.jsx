@@ -33,16 +33,23 @@ class ChannelSearch extends React.Component {
     for (let id in this.props.allChannels) {
       channels.push(this.props.allChannels[id]);
     }
+    const channelItems = channels.map((channel) => (
+      <ChannelSearchItem
+        key={channel.id}
+        channel={channel}
+        subscribeToChannel={this.props.subscribeToChannel}
+        closeChannelSearch={this.props.closeChannelSearch}/>
+    ));
 
     return(
       <Modal
         isOpen={this.props.isOpen}
-        onRequestClose={this.props.closeChannelSearch.bind(this)}
+        onRequestClose={this.props.closeChannelSearch}
         style={this.style}>
         <section className="channel-search">
           <h2>Browse all channels</h2>
           <ul>
-            {channels.map(channel => <ChannelSearchItem key={channel.id} channel={channel} />)}
+            {channelItems}
           </ul>
         </section>
       </Modal>

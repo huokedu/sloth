@@ -19,12 +19,14 @@ class Api::ChannelsController < ApplicationController
   end
 
   def subscribe
-    @channel = Channel.params(:id)
+    @channel = Channel.find(params[:id])
     @channel.members << current_user
+
+    render :new_subscription
   end
 
   def unsubscribe
-    @channel = Channel.params(:id)
+    @channel = Channel.find(params[:id])
     @channel.members
   end
 

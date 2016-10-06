@@ -68,7 +68,7 @@ class ChannelsIndex extends React.Component {
       subscribedChannels.push(this.props.subscribedChannels[id]);
     }
     const totalNumChannels = Object.keys(this.props.allChannels).length;
-
+    console.log(this.props.subscribeToChannel);
     return(
       <div className="group">
         <section className="sidebar">
@@ -108,7 +108,8 @@ class ChannelsIndex extends React.Component {
         <ChannelSearch
           isOpen={this.state.channelSearchOpen}
           closeChannelSearch={this.closeChannelSearch.bind(this)}
-          allChannels={this.props.allChannels} />
+          allChannels={this.props.allChannels}
+          subscribeToChannel={this.props.subscribeToChannel} />
         <ChannelForm
           isOpen={this.state.channelFormOpen}
           closeChannelForm={this.closeChannelForm.bind(this)}

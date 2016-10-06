@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER, SIGN_OUT } from '../actions/session_actions';
-import { RECEIVE_SINGLE_CHANNEL } from '../actions/channel_actions';
+import { RECEIVE_SINGLE_CHANNEL,
+         UPDATE_SUBSCRIBED_CHANNELS } from '../actions/channel_actions';
 
 const SessionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -15,6 +16,11 @@ const SessionReducer = (state = {}, action) => {
           purpose: action.channel[id].purpose,
         });
       }
+      return newState;
+    }
+    case UPDATE_SUBSCRIBED_CHANNELS: {
+      const newState = Object.assign({}, state);
+      newState.subscribed_channels.push(action.channel);
       return newState;
     }
     case SIGN_OUT: {

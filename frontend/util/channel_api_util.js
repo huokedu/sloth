@@ -16,3 +16,12 @@ export const createChannel = (success, error, channelParams) => {
       error,
   });
 };
+
+export const subscribeToChannel = (success, error, channelId) => {
+  $.ajax({
+    method: 'POST',
+    url: `api/channels/${channelId}/subscribe`,
+    success,
+    error,
+  });
+};

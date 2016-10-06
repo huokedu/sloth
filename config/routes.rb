@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :channels, only: [:index, :show, :create]
   end
+
+  post 'api/channels/:id/subscribe', to: 'api/channels#subscribe'
 end
