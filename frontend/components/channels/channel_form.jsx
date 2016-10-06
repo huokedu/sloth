@@ -55,21 +55,21 @@ class ChannelForm extends React.Component {
         <section className="channel-form">
           <h2>Create a new channel</h2>
           <form onSubmit={this.handleSubmit}>
-            <label>Channel name
+            <label className="channel-form-label">Channel name
               <input
                 type="text"
                 value={this.state.name}
                 onChange={this.updateInput('name')} />
             </label>
 
-            <label>Purpose
+            <label className="channel-form-label">Purpose
               <textarea
                 value={this.state.purpose}
                 placeholder="Briefly describe the purpose of this channel"
                 onChange={this.updateInput('purpose')}></textarea>
             </label>
 
-            <input type="submit" value="Create channel"/>
+            <input className="channel-form-submit" type="submit" value="Create channel"/>
           </form>
         </section>
       </Modal>
