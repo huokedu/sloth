@@ -86,6 +86,7 @@ class ChannelsIndex extends React.Component {
             <button onClick={this.openChannelSearch.bind(this)}>
               Channels <span>({totalNumChannels})</span>
             </button>
+            <button className="plus-button">+</button>
           </h3>
           <ul className="channel-list">
             { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
