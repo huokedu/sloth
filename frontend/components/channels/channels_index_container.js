@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { signOut } from '../../actions/session_actions';
+import { createChannel } from '../../actions/channel_actions';
 import ChannelsIndex from './channels_index';
 
 const mapStateToProps = ({ channels, currentUser }) => ({
@@ -11,6 +12,7 @@ const mapStateToProps = ({ channels, currentUser }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut()),
+  createChannel: (channelParams) => dispatch(createChannel(channelParams)),
 });
 
 export default connect(

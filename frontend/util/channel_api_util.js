@@ -6,3 +6,13 @@ export const fetchAllChannels = (success, error) => {
     error,
   });
 };
+
+export const createChannel = (success, error, channelParams) => {
+  $.ajax({
+      method: 'POST',
+      url: 'api/channels',
+      data: channelParams,
+      success,
+      error,
+  });
+};

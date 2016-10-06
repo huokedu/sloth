@@ -11,6 +11,7 @@ class Api::ChannelsController < ApplicationController
     @channel.creator_id = current_user.id
 
     if @channel.save
+      @channel.members << current_user
       render :show
     else
       render json: @channel.errors.full_messages

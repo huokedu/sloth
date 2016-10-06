@@ -2,6 +2,7 @@ import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
 import ChannelSearch from './channel_search';
+import ChannelForm from './channel_form';
 
 class ChannelsIndex extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class ChannelsIndex extends React.Component {
     this.state = {
       dropdown: false,
       channelSearchOpen: false,
+      channelFormOpen: false,
     };
 
     this.signOut = this.signOut.bind(this);
@@ -43,6 +45,14 @@ class ChannelsIndex extends React.Component {
 
   closeChannelSearch() {
     this.setState({ channelSearchOpen: false });
+  }
+
+  openChannelForm() {
+    this.setState({ channelFormOpen: true });
+  }
+
+  closeChannelForm() {
+    this.setState({ channelFormOpen: false });
   }
 
   componentDidMount() {
@@ -86,7 +96,9 @@ class ChannelsIndex extends React.Component {
             <button onClick={this.openChannelSearch.bind(this)}>
               Channels <span>({totalNumChannels})</span>
             </button>
-            <button className="plus-button">+</button>
+            <button className="plus-button" onClick={this.openChannelForm.bind(this)}>
+              +
+            </button>
           </h3>
           <ul className="channel-list">
             { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
@@ -97,6 +109,10 @@ class ChannelsIndex extends React.Component {
           isOpen={this.state.channelSearchOpen}
           closeChannelSearch={this.closeChannelSearch.bind(this)}
           allChannels={this.props.allChannels} />
+        <ChannelForm
+          isOpen={this.state.channelFormOpen}
+          closeChannelForm={this.closeChannelForm.bind(this)}
+          createChannel={this.props.createChannel} />
       </div>
     );
   }

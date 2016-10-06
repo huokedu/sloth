@@ -1,5 +1,6 @@
 import { SIGN_OUT } from '../actions/session_actions';
 import { RECEIVE_ALL_CHANNELS,
+         RECEIVE_SINGLE_CHANNEL,
          SWITCH_CHANNEL } from '../actions/channel_actions';
 
 const defaultState = {
@@ -17,6 +18,13 @@ const ChannelReducer = (state = defaultState, action) => {
     case SWITCH_CHANNEL: {
       const newState = Object.assign({}, state);
       newState.currentChannel = action.channelId;
+      return newState;
+    }
+    case RECEIVE_SINGLE_CHANNEL: {
+      const newState = Object.assign({}, state);
+      for (let id in action.channel ) {
+        newState.allChannels[id] = action.channel[id];
+      }
       return newState;
     }
     case SIGN_OUT: {
