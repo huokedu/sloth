@@ -13,7 +13,7 @@ foliage = Channel.create!(name: 'foliage', purpose: 'yum food stuff', creator_id
 
 ChannelMembership.destroy_all
 
-[alex, sid, buttercup, pizza].each do |user|
+[alex, buttercup, pizza].each do |user|
   ChannelMembership.create!(member_id: user.id, channel_id: general.id)
 end
 

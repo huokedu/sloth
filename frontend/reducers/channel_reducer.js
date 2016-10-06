@@ -1,6 +1,13 @@
-import { RECEIVE_ALL_CHANNELS, SWITCH_CHANNEL } from '../actions/channel_actions';
+import { SIGN_OUT } from '../actions/session_actions';
+import { RECEIVE_ALL_CHANNELS,
+         SWITCH_CHANNEL } from '../actions/channel_actions';
 
-const ChannelReducer = (state = {currentChannel: 2, allChannels: {}}, action) => {
+const defaultState = {
+  currentChannel: null,
+  allChannels: {},
+};
+
+const ChannelReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_CHANNELS: {
       const newState = Object.assign({}, state);
@@ -11,6 +18,9 @@ const ChannelReducer = (state = {currentChannel: 2, allChannels: {}}, action) =>
       const newState = Object.assign({}, state);
       newState.currentChannel = action.channelId;
       return newState;
+    }
+    case SIGN_OUT: {
+      return defaultState;
     }
     default: {
       return state;

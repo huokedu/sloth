@@ -18,6 +18,12 @@ class ChannelsIndex extends React.Component {
     this.toggleClass = this.toggleClass.bind(this);
   }
 
+  renderDefaultChannel() {
+    const currentUser = this.props.currentUser;
+    const defaultChannel = currentUser.subscribed_channels[0].id;
+    hashHistory.push(`/messages/${defaultChannel}`);
+  }
+
   signOut() {
     this.props.signOut();
     hashHistory.push('/');
@@ -37,6 +43,12 @@ class ChannelsIndex extends React.Component {
 
   closeChannelSearch() {
     this.setState({ channelSearchOpen: false });
+  }
+
+  componentDidMount() {
+    if (!this.props.currentChannel) {
+      this.renderDefaultChannel();
+    }
   }
 
   render() {
