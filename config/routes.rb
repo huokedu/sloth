@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :channels, only: [:index, :show, :create]
   end
 
-  post 'api/channels/:id/subscribe', to: 'api/channels#subscribe'
+  post 'api/channels/:id/subscription', to: 'api/channels#subscribe'
+  delete 'api/channels/:id/subscription', to: 'api/channels#unsubscribe'
 end
