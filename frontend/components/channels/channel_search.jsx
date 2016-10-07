@@ -52,12 +52,6 @@ class ChannelSearch extends React.Component {
             {channelItems}
           </ul>
         </section>
-        <button
-          className="modal-exit"
-          onClick={this.props.closeChannelSearch}>
-          <span className="modal-exit-icon">✕</span>
-          <span className="modal-exit-text">esc</span>
-        </button>
       </Modal>
     );
   }

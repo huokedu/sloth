@@ -4,7 +4,6 @@ export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
 export const CREATE_CHANNEL = 'CREATE_CHANNEL';
 export const RECEIVE_SINGLE_CHANNEL = 'RECEIVE_SINGLE_CHANNEL';
 export const SUBSCRIBE_TO_CHANNEL = 'SUBSCRIBE_TO_CHANNEL';
-export const UNSUBSCRIBE_FROM_CHANNEL = 'UNSUBSCRIBE_FROM_CHANNEL';
 export const UPDATE_SUBSCRIBED_CHANNELS = 'UPDATE_SUBSCRIBED_CHANNELS';
 
 export const requestAllChannels = () => ({
@@ -36,12 +35,7 @@ export const subscribeToChannel = (channelId) => ({
   channelId,
 });
 
-export const unsubscribeFromChannel = (channelId) => ({
-  type: UNSUBSCRIBE_FROM_CHANNEL,
-  channelId
-});
-
-export const updateSubscribedChannels = (channels) => ({
+export const updateSubscribedChannels = (channel) => ({
   type: UPDATE_SUBSCRIBED_CHANNELS,
-  channels,
+  channel,
 });

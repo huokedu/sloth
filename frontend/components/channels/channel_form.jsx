@@ -50,7 +50,7 @@ class ChannelForm extends React.Component {
     return(
       <Modal
         isOpen={this.props.isOpen}
-        onRequestClose={this.props.closeChannelForm}
+        onRequestClose={this.props.closeChannelForm.bind(this)}
         style={this.style}>
         <section className="channel-form">
           <h2>Create a new channel</h2>
@@ -72,12 +72,6 @@ class ChannelForm extends React.Component {
             <input className="channel-form-submit" type="submit" value="Create channel"/>
           </form>
         </section>
-        <button
-          className="modal-exit"
-          onClick={this.props.closeChannelForm}>
-          <span className="modal-exit-icon">✕</span>
-          <span className="modal-exit-text">esc</span>
-        </button>
       </Modal>
     );
   }

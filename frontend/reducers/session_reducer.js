@@ -20,7 +20,7 @@ const SessionReducer = (state = {}, action) => {
     }
     case UPDATE_SUBSCRIBED_CHANNELS: {
       const newState = Object.assign({}, state);
-      newState.subscribed_channels = action.channels;
+      newState.subscribed_channels.push(action.channel);
       return newState;
     }
     case SIGN_OUT: {

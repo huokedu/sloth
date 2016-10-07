@@ -20,16 +20,7 @@ export const createChannel = (success, error, channelParams) => {
 export const subscribeToChannel = (success, error, channelId) => {
   $.ajax({
     method: 'POST',
-    url: `api/channels/${channelId}/subscription`,
-    success,
-    error,
-  });
-};
-
-export const unsubscribeFromChannel = (success, error, channelId) => {
-  $.ajax({
-    method: 'DELETE',
-    url: `api/channels/${channelId}/subscription`,
+    url: `api/channels/${channelId}/subscribe`,
     success,
     error,
   });
