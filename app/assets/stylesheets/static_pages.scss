@@ -193,6 +193,7 @@ body {
   color: #ab9ba9;
   -webkit-font-smoothing: antialiased;
   position: fixed;
+  z-index: 6;
 }
 
 .sidebar-header {
@@ -200,6 +201,7 @@ body {
   cursor: pointer;
   padding: 0 20px;
   position: relative;
+  z-index: 6;
 
   &:hover {
     background: rgb(62, 49, 60);
@@ -236,6 +238,7 @@ body {
   font-weight: 900;
   color: #fff;
   position: relative;
+  z-index: 6;
 
   &:after {
     position: absolute;
@@ -266,7 +269,7 @@ body {
 }
 
 .sidebar-dropdown {
-  z-index: 99;
+  z-index: 6;
   cursor: default;
   position: absolute;
   top: 56px;
@@ -413,7 +416,7 @@ body {
     background: #fff;
     height: 60px;
     border-bottom: 1px solid #e8e8e8;
-    z-index: -1;
+    z-index: 5;
 
     h2 {
       padding: 8px 20px 0;
@@ -476,8 +479,22 @@ body {
       cursor: pointer;
     }
 
-    &:last-child {
-      border-bottom: 1px solid #e8e8e8;
+    &:first-child {
+      border-top: 1px solid #e8e8e8;
+    }
+
+    &:hover {
+      background: #edf7fd;
+      border: 1px solid #d3ecfa;
+      border-radius: 6px;
+
+      &:after {
+        color: #439fe0;
+        position: absolute;
+        content: "Join Channel";
+        right: 20px;
+        top: 20px;
+      }
     }
   }
 
@@ -527,4 +544,40 @@ body {
   font-weight: 700;
   border-radius: 4px;
   padding: 10px 20px;
+}
+
+.modal-exit {
+  color: #9e9ea6;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+
+  .modal-exit-icon {
+    display: block;
+    font-size: 24px;
+  }
+
+  .modal-exit-text {
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: #555459;
+    background: #e8e8e8;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.leave-channel-button {
+  position: absolute;
+  z-index: 7;
+  cursor: pointer;
+  left: 500px;
+  top: 20px;
 }
