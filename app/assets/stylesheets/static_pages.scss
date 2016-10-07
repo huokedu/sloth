@@ -469,11 +469,11 @@ body {
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     border-bottom: 1px solid #e8e8e8;
-    padding: 12px 0 12px 10px;
     cursor: pointer;
     position: relative;
 
     button {
+      padding: 12px 0 12px 10px;
       text-align: left;
       display: block;
       width: 100%;
@@ -496,6 +496,10 @@ body {
         right: 20px;
         top: 20px;
       }
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 

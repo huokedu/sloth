@@ -4,14 +4,10 @@ import { hashHistory } from 'react-router';
 const MessageFeed = ({ channel, unsubscribeFromChannel, allChannels, params }) => {
   function handleUnsubscribe () {
     unsubscribeFromChannel(channel.id);
-    hashHistory.push('/messages');
   }
 
-  console.log(allChannels[params.channelId]);
-  console.log(channel);
   const thisChannel = channel || allChannels[params.channelId];
   if (thisChannel) {
-    console.log(thisChannel);
     return(
       <section className="message-feed">
         <header>

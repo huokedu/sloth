@@ -9,6 +9,7 @@ import { fetchAllChannels,
          createChannel,
          subscribeToChannel,
          unsubscribeFromChannel } from '../util/channel_api_util';
+import { hashHistory } from 'react-router';
 
 const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
   switch (action.type) {
@@ -25,13 +26,21 @@ const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
       return next(action);
     }
     case SUBSCRIBE_TO_CHANNEL: {
-      const success = channels => dispatch(updateSubscribedChannels(channels));
-      const error = e => console.log(e);
+      const success = channels => {
+        dispatch(updateSubscribedChannels(channels));
+        hashHistory.push(`/messages/${action.channelId}`);
+      };
+      const error = e => {
+        hashHistory.push(`/messages/${action.channelId}`);
+      };
       subscribeToChannel(success, error, action.channelId);
       return next(action);
     }
     case UNSUBSCRIBE_FROM_CHANNEL: {
-      const success = channels => dispatch(updateSubscribedChannels(channels));
+      const success = channels => {
+        dispatch(updateSubscribedChannels(channels));
+        hashHistory.push(`/messages/${channels[channels.length - 1].id}`);
+      };
       const error = e => console.log(e);
       unsubscribeFromChannel(success, error, action.channelId);
       return next(action);
