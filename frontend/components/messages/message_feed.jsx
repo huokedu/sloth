@@ -26,12 +26,6 @@ class MessageFeed extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // const end = document.getElementById('messages-end');
-    // if (end) {
-    //   end.scrollIntoView();
-    // }
-  }
   componentDidUpdate() {
     const end = document.getElementById('messages-end');
     if (end) {
