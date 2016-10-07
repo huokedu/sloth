@@ -8,7 +8,6 @@ class MessageFeed extends React.Component {
 
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
     this.channel = this.channel.bind(this);
-    console.log(this.props);
   }
 
   handleUnsubscribe() {
@@ -24,6 +23,19 @@ class MessageFeed extends React.Component {
       return(
         this.props.allChannels[this.props.params.channelId]
       );
+    }
+  }
+
+  componentDidMount() {
+    // const end = document.getElementById('messages-end');
+    // if (end) {
+    //   end.scrollIntoView();
+    // }
+  }
+  componentDidUpdate() {
+    const end = document.getElementById('messages-end');
+    if (end) {
+      end.scrollIntoView();
     }
   }
 
@@ -54,9 +66,10 @@ class MessageFeed extends React.Component {
               onClick={this.handleUnsubscribe}>Leave this channel</button>
           </header>
           <div className="message-feed-main">
-            <ul>
+            <ul id="message-list">
               {messages}
             </ul>
+            <div id="messages-end"></div>
           </div>
           <MessageForm
             channel={thisChannel}
@@ -64,7 +77,7 @@ class MessageFeed extends React.Component {
         </section>
       );
     } else {
-      return <section className="message-feed"></section>;
+      return <section></section>;
     }
   }
 }

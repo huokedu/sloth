@@ -3,6 +3,8 @@ import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
 import ChannelSearch from './channel_search';
 import ChannelForm from './channel_form';
+import ReactDOM from 'react-dom';
+
 
 class ChannelsIndex extends React.Component {
   constructor(props) {
@@ -25,6 +27,17 @@ class ChannelsIndex extends React.Component {
     const defaultChannel = currentUser.subscribed_channels[0].id;
     hashHistory.push(`/messages/${defaultChannel}`);
   }
+
+
+    componentDidUpdate() {
+      const feed = ReactDOM.findDOMNode(this);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    componentDidMount() {
+      const feed = ReactDOM.findDOMNode(this);
+      feed.scrollTop = feed.scrollHeight;
+    }
 
   signOut() {
     this.props.signOut();
