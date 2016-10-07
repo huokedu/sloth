@@ -68,7 +68,6 @@ class ChannelsIndex extends React.Component {
       subscribedChannels.push(this.props.subscribedChannels[id]);
     }
     const totalNumChannels = Object.keys(this.props.allChannels).length;
-    console.log(this.props.subscribeToChannel);
     return(
       <div className="group">
         <section className="sidebar">

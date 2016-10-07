@@ -22,12 +22,16 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     @channel.members << current_user
 
-    render :new_subscription
+    @subscribed_channels = current_user.subscribed_channels
+    render :subscribed_channels
   end
 
   def unsubscribe
     @channel = Channel.find(params[:id])
-    @channel.members
+    @channel.members.delete(current_user)
+
+    @subscribed_channels = current_user.subscribed_channels
+    render :subscribed_channels
   end
 
   private
