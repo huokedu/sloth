@@ -53,11 +53,13 @@ class MessageFeed extends React.Component {
               className="leave-channel-button"
               onClick={this.handleUnsubscribe}>Leave this channel</button>
           </header>
-          <ul className="message-feed-main">
-            {messages}
-          </ul>
+          <div className="message-feed-main">
+            <ul>
+              {messages}
+            </ul>
+          </div>
           <MessageForm
-            channelId={thisChannel.id}
+            channel={thisChannel}
             createMessage={this.props.createMessage} />
         </section>
       );

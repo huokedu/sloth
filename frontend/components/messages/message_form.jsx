@@ -17,7 +17,7 @@ class MessageForm extends React.Component {
     const message = this.state;
 
     this.props.createMessage({
-      channelId: this.props.channelId,
+      channelId: this.props.channel.id,
       message,
     });
     this.setState({body: ''});
@@ -30,10 +30,10 @@ class MessageForm extends React.Component {
   render() {
     return(
       <form className="message-form" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
+        <textarea
           onChange={this.updateForm}
-          value={this.state.body} />
+          value={this.state.body}
+          placeholder={"Message #" + this.props.channel.name}></textarea>
         <input type="submit" className="message-form-submit" />
       </form>
     );

@@ -5,13 +5,11 @@ import { fetchCurrentMessages,
          createMessage } from '../../actions/message_actions';
 import { withRouter } from 'react-router';
 
-const mapStateToProps = ({ channels, messages }) => {
-  return({
-    channel: channels.allChannels[channels.currentChannel],
-    allChannels: channels.allChannels,
-    messages,
-  });
-};
+const mapStateToProps = ({ channels, messages }) => ({
+  channel: channels.allChannels[channels.currentChannel],
+  allChannels: channels.allChannels,
+  messages,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   unsubscribeFromChannel: (channelId) => {
