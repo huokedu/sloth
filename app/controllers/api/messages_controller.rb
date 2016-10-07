@@ -1,6 +1,7 @@
 class Api::MessagesController < ApplicationController
   def index
-    @messages = Message.where(channel_id: params[:channel_id])
+    @channel_id = params[:channel_id]
+    @messages = Message.where(channel_id: @channel_id)
   end
 
   def create

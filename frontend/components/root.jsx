@@ -7,6 +7,7 @@ import SignUpFormContainer from './session_forms/signup_form_container';
 import ChannelsIndexContainer from './channels/channels_index_container';
 import MessageFeedContainer from './messages/message_feed_container';
 import { requestAllChannels, switchChannel } from '../actions/channel_actions';
+import { fetchCurrentMessages } from '../actions/message_actions';
 
 const Root = ({ store }) => {
   function redirectUnlessLoggedIn() {
@@ -22,6 +23,9 @@ const Root = ({ store }) => {
 
   function changeCurrentChannel(nextState) {
     store.dispatch(switchChannel(nextState.params.channelId));
+    if (!store.getState().messages[nextState.params.channelId]) {
+      store.dispatch(fetchCurrentMessages(nextState.params.channelId));
+    }
   }
 
   return (

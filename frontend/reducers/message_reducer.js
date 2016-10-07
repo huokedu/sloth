@@ -10,8 +10,12 @@ const MessageReducer = (state = {}, action) => {
     }
     case RECEIVE_SINGLE_MESSAGE: {
       const newState = Object.assign({}, state);
-      const message = action.message;
-      newState[message.channelId][message.messageId] = message;
+      const messageId = Object.keys(action.message)[0];
+      const message = action.message[messageId];
+      if (typeof newState[message.channelId] === 'undefined') {
+        newState[message.channelId] = {};
+      }
+      newState[message.channelId][messageId] = message;
       return newState;
     }
     case REMOVE_SINGLE_MESSAGE: {

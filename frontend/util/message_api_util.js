@@ -1,7 +1,7 @@
 export const fetchCurrentMessages = (success, error, channelId) => {
   $.ajax({
     method: 'GET',
-    url: `/channels/${channelId}/messages`,
+    url: `api/channels/${channelId}/messages`,
     success,
     error,
   });
