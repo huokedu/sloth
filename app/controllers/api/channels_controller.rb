@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all
+    @channels = Channel.includes(:members).all
   end
 
   def show
