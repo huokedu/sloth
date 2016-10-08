@@ -434,7 +434,6 @@ body {
 
 .message-feed-main {
   width: 100%;
-  z-index: -1;
   margin: 70px 20px 50px;
 }
 
@@ -442,7 +441,6 @@ body {
   overflow-y: auto;
   display: block;
   position: relative;
-  z-index: -2;
   padding-bottom: 20px;
 }
 
@@ -481,18 +479,33 @@ body {
   color: #2c2d30;
   font-weight: 900;
   display: inline;
-  font-weight: 14px;
+  font-size: 14px;
   padding-right: 4px;
 }
 
 .message-item {
+  position: relative;
+  font-size: 14px;
   padding-bottom: 10px;
   word-wrap: break-word;
+
+  &:hover {
+    background: #f9f9f9;
+  }
 }
 
 .message-time {
   color: #9e9ea6;
   font-size: 12px;
+  font-weight: 300;
+}
+
+.message-edited {
+  font-weight: 300;
+  color: #9e9ea6;
+  font-size: 12px;
+  display: inline-block;
+  padding-left: 10px;
 }
 
 .channel-search, .channel-form {

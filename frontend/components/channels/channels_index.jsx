@@ -9,6 +9,7 @@ import Sidebar from './sidebar';
 class ChannelsIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.closeModal = this.closeModal.bind(this);
 
     this.state = {
       dropdown: false,
@@ -113,7 +114,7 @@ class ChannelsIndex extends React.Component {
           {this.state.modalContent}
           <button
             className="modal-exit"
-            onClick={this.closeModal.bind(this)}>
+            onClick={this.closeModal}>
             <span className="modal-exit-icon">✕</span>
             <span className="modal-exit-text">esc</span>
           </button>

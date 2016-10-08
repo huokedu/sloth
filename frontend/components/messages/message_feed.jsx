@@ -9,7 +9,6 @@ class MessageFeed extends React.Component {
     super(props);
 
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
-    // this.channel = this.channel.bind(this);
   }
 
   handleUnsubscribe() {
@@ -18,16 +17,6 @@ class MessageFeed extends React.Component {
       channel.id
     );
   }
-  //
-  // channel() {
-  //   if (this.props.channel) {
-  //     return this.props.channel;
-  //   } else if (this.props.allChannels[this.props.params.channelId]) {
-  //     return(
-  //       this.props.allChannels[this.props.params.channelId]
-  //     );
-  //   }
-  // }
 
   componentDidUpdate() {
     const end = document.getElementById('messages-end');
@@ -57,7 +46,8 @@ class MessageFeed extends React.Component {
           messages.push(
             <Message
               key={id}
-              message={this.props.messages[thisChannel.id][id]} />
+              message={this.props.messages[thisChannel.id][id]}
+              updateMessage={this.props.updateMessage} />
           );
         }
       }

@@ -20,7 +20,11 @@ const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
       return next(action);
     }
     case CREATE_CHANNEL: {
-      const success = channel => dispatch(receiveSingleChannel(channel));
+      const success = channel => {
+        dispatch(receiveSingleChannel(channel));
+        const id = Object.keys(channel)[0];
+        hashHistory.push(`/messages/${id}`);
+      };
       const error = e => console.log(e);
       createChannel(success, error, action.channelParams);
       return next(action);
