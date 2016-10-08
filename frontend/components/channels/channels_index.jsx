@@ -28,17 +28,6 @@ class ChannelsIndex extends React.Component {
     hashHistory.push(`/messages/${defaultChannel}`);
   }
 
-
-    componentDidUpdate() {
-      const feed = ReactDOM.findDOMNode(this);
-      feed.scrollTop = feed.scrollHeight;
-    }
-
-    componentDidMount() {
-      const feed = ReactDOM.findDOMNode(this);
-      feed.scrollTop = feed.scrollHeight;
-    }
-
   signOut() {
     this.props.signOut();
     hashHistory.push('/');

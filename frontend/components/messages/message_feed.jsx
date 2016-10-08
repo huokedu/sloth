@@ -1,3 +1,5 @@
+/* globals Pusher */
+
 import React from 'react';
 import Message from './message';
 import MessageForm from './message_form';
@@ -7,24 +9,25 @@ class MessageFeed extends React.Component {
     super(props);
 
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
-    this.channel = this.channel.bind(this);
+    // this.channel = this.channel.bind(this);
   }
 
   handleUnsubscribe() {
+    const channel = this.props.allChannels[this.props.currentChannel];
     this.props.unsubscribeFromChannel(
-      this.props.channel.id
+      channel.id
     );
   }
-
-  channel() {
-    if (this.props.channel) {
-      return this.props.channel;
-    } else if (this.props.allChannels[this.props.params.channelId]) {
-      return(
-        this.props.allChannels[this.props.params.channelId]
-      );
-    }
-  }
+  //
+  // channel() {
+  //   if (this.props.channel) {
+  //     return this.props.channel;
+  //   } else if (this.props.allChannels[this.props.params.channelId]) {
+  //     return(
+  //       this.props.allChannels[this.props.params.channelId]
+  //     );
+  //   }
+  // }
 
   componentDidUpdate() {
     const end = document.getElementById('messages-end');
@@ -33,9 +36,20 @@ class MessageFeed extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const pusher = new Pusher('aea52d3bfe768bb2f4bb', {
+     encrypted: true
+    });
+
+    const channel = pusher.subscribe(`channel_${this.props.currentChannel}`);
+    channel.bind('new_message', (data) => {
+      this.props.fetchCurrentMessages(this.props.currentChannel);
+    });
+  }
+
   render() {
-    if (this.channel()) {
-      const thisChannel = this.channel();
+    if (this.props.allChannels[this.props.currentChannel]) {
+      const thisChannel = this.props.allChannels[this.props.currentChannel];
 
       const messages = [];
       if (this.props.messages) {

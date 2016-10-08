@@ -6,7 +6,7 @@ import { fetchCurrentMessages,
 import { withRouter } from 'react-router';
 
 const mapStateToProps = ({ channels, messages }) => ({
-  channel: channels.allChannels[channels.currentChannel],
+  currentChannel: channels.currentChannel,
   allChannels: channels.allChannels,
   messages,
 });

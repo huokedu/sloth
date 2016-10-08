@@ -10,6 +10,7 @@ class Api::MessagesController < ApplicationController
     @message.channel_id = params[:channel_id]
 
     if @message.save
+      Pusher.trigger("channel_#{@message.channel_id}", 'new_message', {})
       render :show
     else
       render json: @message.errors.full_messages
