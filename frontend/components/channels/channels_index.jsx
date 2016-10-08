@@ -1,25 +1,45 @@
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
-import ChannelSearch from './channel_search';
-import ChannelForm from './channel_form';
-import ReactDOM from 'react-dom';
-
+import ChannelList from './modals/channel_list';
+import NewChannelForm from './modals/new_channel_form';
+import Modal from 'react-modal';
 
 class ChannelsIndex extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       dropdown: false,
-      channelSearchOpen: false,
-      channelFormOpen: false,
+      modalOpen: false,
+      modalContent: <div></div>,
+    };
+
+    this.modalStyle = {
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        zIndex: 10,
+      },
+      content: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: '20px',
+        zIndex: 11
+      },
     };
 
     this.signOut = this.signOut.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   renderDefaultChannel() {
@@ -41,20 +61,31 @@ class ChannelsIndex extends React.Component {
     return (this.state.dropdown) ? " toggled" : "";
   }
 
-  openChannelSearch() {
-    this.setState({ channelSearchOpen: true });
-  }
-
-  closeChannelSearch() {
-    this.setState({ channelSearchOpen: false });
+  openChannelList() {
+    this.setState({
+      modalOpen: true,
+      modalContent: (
+        <ChannelList
+          allChannels={this.props.allChannels}
+          subscribeToChannel={this.props.subscribeToChannel}
+          closeModal={this.closeModal} />
+      ),
+    });
   }
 
   openChannelForm() {
-    this.setState({ channelFormOpen: true });
+    this.setState({
+      modalOpen: true,
+      modalContent: (
+        <NewChannelForm
+          createChannel={this.props.createChannel}
+          closeModal={this.closeModal} />
+      ),
+    });
   }
 
-  closeChannelForm() {
-    this.setState({ channelFormOpen: false });
+  closeModal() {
+    this.setState({ modalOpen: false });
   }
 
   componentDidMount() {
@@ -94,10 +125,12 @@ class ChannelsIndex extends React.Component {
             </div>
           </div>
           <h3 className="sidebar-subheading">
-            <button onClick={this.openChannelSearch.bind(this)}>
+            <button onClick={this.openChannelList.bind(this)}>
               Channels <span>({totalNumChannels})</span>
             </button>
-            <button className="plus-button" onClick={this.openChannelForm.bind(this)}>
+            <button
+              className="plus-button"
+              onClick={this.openChannelForm.bind(this)}>
               +
             </button>
           </h3>
@@ -114,16 +147,21 @@ class ChannelsIndex extends React.Component {
           </h3>
           <ul className="channel-list"></ul>
         </section>
+
         {this.props.children}
-        <ChannelSearch
-          isOpen={this.state.channelSearchOpen}
-          closeChannelSearch={this.closeChannelSearch.bind(this)}
-          allChannels={this.props.allChannels}
-          subscribeToChannel={this.props.subscribeToChannel} />
-        <ChannelForm
-          isOpen={this.state.channelFormOpen}
-          closeChannelForm={this.closeChannelForm.bind(this)}
-          createChannel={this.props.createChannel} />
+
+        <Modal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.closeModal}
+          style={this.modalStyle}>
+          {this.state.modalContent}
+          <button
+            className="modal-exit"
+            onClick={this.closeModal}>
+            <span className="modal-exit-icon">✕</span>
+            <span className="modal-exit-text">esc</span>
+          </button>
+        </Modal>
       </div>
     );
   }

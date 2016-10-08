@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ChannelSearchItem = ({ channel, subscribeToChannel, closeChannelSearch }) => {
-  function handleSubscribe() {
+const ChannelListItem = ({ channel, subscribeToChannel, closeModal }) => {
+  const handleSubscribe = () => {
     subscribeToChannel(channel.id);
-    closeChannelSearch();
-  }
+    closeModal();
+  };
 
   return(
     <li className="channel-search-item">
@@ -18,5 +18,4 @@ const ChannelSearchItem = ({ channel, subscribeToChannel, closeChannelSearch }) 
   );
 };
 
-
-export default ChannelSearchItem;
+export default ChannelListItem;
