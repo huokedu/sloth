@@ -3,7 +3,9 @@ import UserDropdown from './user_dropdown';
 
 const Sidebar = (props) => (
   <section className="sidebar">
-    <UserDropdown username={props.username} />
+    <UserDropdown
+      username={props.username}
+      signOut={props.signOut} />
 
     <h3 className="sidebar-subheading">
       <button onClick={props.openChannelList}>

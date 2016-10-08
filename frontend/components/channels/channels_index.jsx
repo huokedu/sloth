@@ -36,11 +36,6 @@ class ChannelsIndex extends React.Component {
         zIndex: 11
       },
     };
-
-    this.signOut = this.signOut.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.toggleClass = this.toggleClass.bind(this);
-    this.closeModal = this.closeModal.bind(this);
   }
 
   renderDefaultChannel() {
@@ -52,14 +47,6 @@ class ChannelsIndex extends React.Component {
   signOut() {
     this.props.signOut();
     hashHistory.push('/');
-  }
-
-  toggleDropdown() {
-    this.setState({dropdown: !this.state.dropdown});
-  }
-
-  toggleClass() {
-    return (this.state.dropdown) ? " toggled" : "";
   }
 
   openChannelList() {
@@ -114,7 +101,8 @@ class ChannelsIndex extends React.Component {
           totalNumChannels={Object.keys(this.props.allChannels).length}
           subscribedChannels={subscribedChannels}
           openChannelList={this.openChannelList.bind(this)}
-          openChannelForm={this.openChannelForm.bind(this)} />
+          openChannelForm={this.openChannelForm.bind(this)}
+          signOut={this.signOut.bind(this)} />
 
         {this.props.children}
 
@@ -125,7 +113,7 @@ class ChannelsIndex extends React.Component {
           {this.state.modalContent}
           <button
             className="modal-exit"
-            onClick={this.closeModal}>
+            onClick={this.closeModal.bind(this)}>
             <span className="modal-exit-icon">✕</span>
             <span className="modal-exit-text">esc</span>
           </button>

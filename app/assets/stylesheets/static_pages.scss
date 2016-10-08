@@ -2,6 +2,7 @@ html, body, h1, h2, h3, p, ul, ol, div, span, a, button, input, textarea {
   margin: 0;
   padding: 0;
 
+  outline: none;
   background: transparent;
   border: none;
 
@@ -332,10 +333,6 @@ body {
       opacity: .6;
     }
 
-    &:focus {
-      outline: none;
-    }
-
     &:hover {
       transition: color 0.2s ease;
       color: #fff;
@@ -468,7 +465,6 @@ body {
     font-weight: 300;
     font-size: 16px;
     width: 100%;
-    outline: none;
 
     &:focus {
       border-color: #bbbdbf;
@@ -550,10 +546,6 @@ body {
         top: 20px;
       }
     }
-
-    &:focus {
-      outline: none;
-    }
   }
 
   .channel-search-name {
@@ -625,10 +617,6 @@ body {
   &:hover {
     color: #555459;
     background: #e8e8e8;
-  }
-
-  &:focus {
-    outline: none;
   }
 }
 
