@@ -225,7 +225,7 @@ body {
     }
   }
 
-  &.toggled {
+  &.open {
     background: rgb(62, 49, 60);
 
     .sidebar-username {
@@ -279,18 +279,8 @@ body {
 }
 
 .sidebar-dropdown {
-  z-index: 6;
   cursor: default;
-  position: absolute;
-  top: 56px;
-  left: 10px;
   color: #2c2d30;
-  background: #fff;
-  border-radius: 6px;
-  display: none;
-  width: 270px;
-  box-shadow: 0 5px 10px rgba(0,0,0,.12);
-  border: 1px solid rgba(0,0,0,.15);
 
   h2 {
     padding-top: 16px;
@@ -416,7 +406,7 @@ body {
   float: left;
   padding-left: 220px;
   display: block;
-  width: 100%;
+  width: calc(100% - 30px);
   height: 100vh;
 
   header {
@@ -449,7 +439,7 @@ body {
 }
 
 .message-feed-main {
-  width: 900px;
+  width: 100%;
   z-index: -1;
   margin: 70px 20px 50px;
 }
@@ -504,6 +494,7 @@ body {
 
 .message-item {
   padding-bottom: 10px;
+  word-wrap: break-word;
 }
 
 .message-time {

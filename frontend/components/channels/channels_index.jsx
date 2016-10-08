@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 import ChannelList from './modals/channel_list';
 import NewChannelForm from './modals/new_channel_form';
 import Modal from 'react-modal';
+import Sidebar from './sidebar';
 
 class ChannelsIndex extends React.Component {
   constructor(props) {
@@ -95,58 +96,25 @@ class ChannelsIndex extends React.Component {
   }
 
   render() {
-    const username = this.props.currentUser.username;
     const subscribedChannels = [];
     for (let id in this.props.subscribedChannels) {
-      subscribedChannels.push(this.props.subscribedChannels[id]);
+      const channel = this.props.subscribedChannels[id];
+      subscribedChannels.push(
+        <ChannelsIndexItem
+          key={channel.id}
+          channel={channel}
+          currentChannel={this.props.currentChannel} />
+      );
     }
-    const totalNumChannels = Object.keys(this.props.allChannels).length;
+
     return(
       <div className="group">
-        <section className="sidebar">
-          <div
-            className={"sidebar-header" + this.toggleClass()}
-            onClick={this.toggleDropdown}>
-
-            <h1 className="sidebar-logo">Sloth</h1>
-            <h2 className="sidebar-username">{username}</h2>
-            <div className="sidebar-dropdown">
-              <h2>{username}</h2>
-              <h3>@{username}</h3>
-              <ul>
-                <li>
-                  <button>Profile</button>
-                </li>
-                <li>
-                  <button
-                    onClick={this.signOut}>Sign out of Sloth</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <h3 className="sidebar-subheading">
-            <button onClick={this.openChannelList.bind(this)}>
-              Channels <span>({totalNumChannels})</span>
-            </button>
-            <button
-              className="plus-button"
-              onClick={this.openChannelForm.bind(this)}>
-              +
-            </button>
-          </h3>
-          <ul className="channel-list">
-            { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
-          </ul>
-          <h3 className="sidebar-subheading">
-            <button>
-              Direct Messages <span>(#ppl)</span>
-            </button>
-            <button className="plus-button">
-              +
-            </button>
-          </h3>
-          <ul className="channel-list"></ul>
-        </section>
+        <Sidebar
+          username={this.props.currentUser.username}
+          totalNumChannels={Object.keys(this.props.allChannels).length}
+          subscribedChannels={subscribedChannels}
+          openChannelList={this.openChannelList.bind(this)}
+          openChannelForm={this.openChannelForm.bind(this)} />
 
         {this.props.children}
 
