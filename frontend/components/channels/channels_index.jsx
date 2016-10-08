@@ -104,6 +104,15 @@ class ChannelsIndex extends React.Component {
           <ul className="channel-list">
             { subscribedChannels.map(channel => <ChannelsIndexItem key={channel.id} channel={channel} currentChannel={this.props.currentChannel} />) }
           </ul>
+          <h3 className="sidebar-subheading">
+            <button>
+              Direct Messages <span>(#ppl)</span>
+            </button>
+            <button className="plus-button">
+              +
+            </button>
+          </h3>
+          <ul className="channel-list"></ul>
         </section>
         {this.props.children}
         <ChannelSearch
