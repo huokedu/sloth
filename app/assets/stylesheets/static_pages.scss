@@ -196,7 +196,8 @@ body {
 
 .sidebar {
   float: left;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
   display: block;
   width: 220px;
   background: #4d394b;
@@ -230,10 +231,6 @@ body {
 
     .sidebar-username {
       color: #fff;
-    }
-
-    .sidebar-dropdown {
-      display: block;
     }
 
     .sidebar-logo:after {
