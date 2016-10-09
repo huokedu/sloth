@@ -16,7 +16,10 @@ class MessageItemForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const message = this.state;
-    this.props.updateMessage({message});
+    this.props.updateMessage({
+      id: this.props.message.id,
+      message,
+    });
     this.props.closeMessageForm();
   }
 
@@ -27,15 +30,17 @@ class MessageItemForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form
+        className="message-item-form"
+        onSubmit={this.handleSubmit.bind(this)}>
         <input
           type="text"
           value={this.state.body}
           onChange={this.updateInput.bind(this) }/>
-        <button onClick={this.closeMessageForm.bind(this)}>
+        <button type="button" onClick={this.closeMessageForm.bind(this)}>
           Cancel
         </button>
-        <button>Save changes</button>
+        <input type="submit" value="⏎   Save changes" />
       </form>
     );
   }

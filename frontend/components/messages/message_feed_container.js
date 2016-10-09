@@ -3,7 +3,8 @@ import MessageFeed from './message_feed';
 import { unsubscribeFromChannel } from '../../actions/channel_actions';
 import { fetchCurrentMessages,
          createMessage,
-         updateMessage } from '../../actions/message_actions';
+         updateMessage,
+         deleteMessage } from '../../actions/message_actions';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = ({ channels, messages }) => ({
@@ -24,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   updateMessage: (messageParams) => {
     dispatch(updateMessage(messageParams));
+  },
+  deleteMessage: (channelId, messageId) => {
+    dispatch(deleteMessage(channelId, messageId));
   },
 });
 

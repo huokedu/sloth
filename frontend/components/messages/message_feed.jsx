@@ -47,7 +47,8 @@ class MessageFeed extends React.Component {
             <Message
               key={id}
               message={this.props.messages[thisChannel.id][id]}
-              updateMessage={this.props.updateMessage} />
+              updateMessage={this.props.updateMessage}
+              deleteMessage={this.props.deleteMessage} />
           );
         }
       }
