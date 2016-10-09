@@ -27,6 +27,13 @@ class Api::MessagesController < ApplicationController
     if @message.update(message_params)
       @message.edited = true
       @message.save
+
+      Pusher.trigger(
+        'new_messages',
+        @message.channel_id.to_s,
+        {}
+      )
+      
       render :show
     else
       render json: @message.errors.full_messages
