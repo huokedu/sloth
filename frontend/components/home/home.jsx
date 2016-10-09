@@ -20,7 +20,7 @@ const Home = ({ children, currentUser, location }) => {
   return (
     <div className={"home " + background}>
       <nav className="group">
-        <h1 className="logo"><Link to="/">sloth</Link></h1>
+        <h1 className="logo"><Link to="/">// sloth</Link></h1>
         {button}
       </nav>
       {children || <div className="tagline"><h2>A messaging app for teams</h2><h2>who eat leaves all day!!</h2></div>}
