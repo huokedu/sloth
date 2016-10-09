@@ -6,7 +6,7 @@
 #  body       :text             not null
 #  author_id  :integer          not null
 #  channel_id :integer          not null
-#  edited     :boolean          default(TRUE)
+#  edited     :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

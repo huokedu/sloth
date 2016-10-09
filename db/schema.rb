@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008003950) do
+ActiveRecord::Schema.define(version: 20161009215657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,12 @@ ActiveRecord::Schema.define(version: 20161008003950) do
   add_index "channel_memberships", ["member_id", "channel_id"], name: "index_channel_memberships_on_member_id_and_channel_id", unique: true, using: :btree
 
   create_table "channels", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
     t.text     "purpose"
-    t.integer  "creator_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "creator_id",                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "direct",     default: false
   end
 
   add_index "channels", ["creator_id"], name: "index_channels_on_creator_id", using: :btree

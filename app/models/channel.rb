@@ -8,6 +8,7 @@
 #  creator_id :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  direct     :boolean          default(FALSE)
 #
 
 class Channel < ActiveRecord::Base
