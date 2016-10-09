@@ -1,5 +1,3 @@
-/* globals Pusher */
-
 import React from 'react';
 import Message from './message';
 import MessageForm from './message_form';
@@ -23,17 +21,6 @@ class MessageFeed extends React.Component {
     if (end) {
       end.scrollIntoView();
     }
-  }
-
-  componentDidMount() {
-    const pusher = new Pusher('aea52d3bfe768bb2f4bb', {
-     encrypted: true
-    });
-
-    const channel = pusher.subscribe(`channel_${this.props.currentChannel}`);
-    channel.bind('new_message', (data) => {
-      this.props.fetchCurrentMessages(this.props.currentChannel);
-    });
   }
 
   render() {

@@ -1,3 +1,5 @@
+/* globals Pusher */
+
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
@@ -40,8 +42,8 @@ class ChannelsIndex extends React.Component {
   }
 
   renderDefaultChannel() {
-    const currentUser = this.props.currentUser;
-    const defaultChannel = currentUser.subscribed_channels[0].id;
+    const currentUser = this.currentUser;
+    const defaultChannel = this.props.currentUser.subscribed_channels[0].id;
     hashHistory.push(`/messages/${defaultChannel}`);
   }
 
@@ -55,7 +57,7 @@ class ChannelsIndex extends React.Component {
       modalOpen: true,
       modalContent: (
         <ChannelList
-          allChannels={this.props.allChannels}
+          allChannels={this.props.channels.allChannels}
           subscribeToChannel={this.props.subscribeToChannel}
           closeModal={this.closeModal} />
       ),
@@ -78,29 +80,48 @@ class ChannelsIndex extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.currentChannel) {
+    if (!this.currentChannel) {
       this.renderDefaultChannel();
     }
   }
 
+  componentDidUpdate() {
+    const pusher = new Pusher('aea52d3bfe768bb2f4bb', {
+     encrypted: true
+    });
+
+    const channel = pusher.subscribe('new_messages');
+    for (let id in this.props.currentUser.subscribed_channels) {
+      if (id === this.props.channels.currentChannel) {
+        channel.bind(`${id}`, (data) => {
+          console.log('fetching');
+          this.props.fetchCurrentMessages(this.props.channels.currentChannel);
+        });
+      }
+    }
+  }
+
   render() {
-    const subscribedChannels = [];
-    for (let id in this.props.subscribedChannels) {
-      const channel = this.props.subscribedChannels[id];
-      subscribedChannels.push(
-        <ChannelsIndexItem
-          key={channel.id}
-          channel={channel}
-          currentChannel={this.props.currentChannel} />
-      );
+    const channelIndexItems = [];
+    const subscribedChannels = this.props.currentUser.subscribed_channels;
+    for (let id in subscribedChannels) {
+      if (Object.hasOwnProperty.call(subscribedChannels, id)) {
+        const channel = subscribedChannels[id];
+        channelIndexItems.push(
+          <ChannelsIndexItem
+            key={channel.id}
+            channel={channel}
+            currentChannel={this.props.channels.currentChannel} />
+        );
+      }
     }
 
     return(
       <div className="group">
         <Sidebar
           username={this.props.currentUser.username}
-          totalNumChannels={Object.keys(this.props.allChannels).length}
-          subscribedChannels={subscribedChannels}
+          totalNumChannels={Object.keys(this.props.channels.allChannels).length}
+          subscribedChannels={channelIndexItems}
           openChannelList={this.openChannelList.bind(this)}
           openChannelForm={this.openChannelForm.bind(this)}
           signOut={this.signOut.bind(this)} />
