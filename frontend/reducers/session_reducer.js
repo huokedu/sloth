@@ -10,11 +10,20 @@ const SessionReducer = (state = {}, action) => {
     case RECEIVE_SINGLE_CHANNEL: {
       const newState = Object.assign({}, state);
       for (let id in action.channel) {
-        newState.subscribed_channels.push({
-          id: action.channel[id].id,
-          name: action.channel[id].name,
-          purpose: action.channel[id].purpose,
-        });
+        const channel = action.channel[id];
+        if (channel.direct) {
+          newState.direct_messages.push({
+            id: channel.id,
+            name: channel.name,
+            purpose: channel.purpose,
+          });
+        } else {
+          newState.subscribed_channels.push({
+            id: channel.id,
+            name: channel.name,
+            purpose: channel.purpose,
+          });
+        }
       }
       return newState;
     }

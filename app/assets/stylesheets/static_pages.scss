@@ -374,6 +374,9 @@ body {
     margin-right: auto;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       background: rgb(62, 49, 60);
@@ -545,7 +548,7 @@ body {
   padding-left: 10px;
 }
 
-.channel-search, .channel-form {
+.channel-search, .channel-form, .direct-message-form {
   width: 640px;
   height: 400px;
   margin: 100px auto;
@@ -601,7 +604,7 @@ body {
   .channel-search-name {
     font-weight: 700;
     &:before {
-      content: "# ";
+      content: "// ";
       font-size: 14px;
       opacity: .6;
     }
@@ -724,6 +727,70 @@ body {
 
     &:hover {
       box-shadow: inset 0 -2px rgba(0,0,0,.25);
+    }
+  }
+}
+
+.direct-message-form {
+  height: auto;
+  margin-bottom: 0;
+
+  input, button {
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+
+  input[type="text"] {
+    padding: 12px 10px;
+    width: 560px;
+    border: 1px solid #C5C5C5;
+  }
+
+  button {
+    padding: 12px 15px;
+    margin-left: 15px;
+    font-weight: 900;
+    background: #2ab27b;
+    color: #fff
+  }
+
+  button[disabled=true] {
+    background: #f5f5f5;
+  }
+}
+
+.user-list {
+  width: 640px;
+  height: 400px;
+  color: #555459;
+  margin: 0 auto;
+
+  .user-list-item {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+    position: relative;
+
+    button {
+      padding: 12px 0 12px 10px;
+      text-align: left;
+      display: block;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    &:first-child {
+      border-top: 1px solid #e8e8e8;
+    }
+
+    &:hover {
+      background: #edf7fd;
+      border: 1px solid #d3ecfa;
+      border-radius: 6px;
     }
   }
 }

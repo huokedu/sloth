@@ -18,6 +18,20 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def create_direct_message
+    @channel = Channel.new(channel_params)
+
+    if @channel.save
+      params[:users].each do |user|
+        @channel.members << User.find_by_id(user.id)
+      end
+      @channel.members << current_user
+      render :show
+    else
+      render json: @channel.errors.full_messages
+    end
+  end
+
   def subscribe
     @channel = Channel.find(params[:id])
     @channel.members << current_user
@@ -36,6 +50,6 @@ class Api::ChannelsController < ApplicationController
 
   private
   def channel_params
-    params.require(:channel).permit(:name, :purpose)
+    params.require(:channel).permit(:name, :purpose, :direct)
   end
 end

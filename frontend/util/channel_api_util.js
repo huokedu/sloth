@@ -34,3 +34,12 @@ export const unsubscribeFromChannel = (success, error, channelId) => {
     error,
   });
 };
+
+export const createDirectMessage = (success, error, channelParams) => {
+  $.ajax({
+    method: 'POST',
+    url: 'api/direct_messages',
+    success,
+    error,
+  });
+};

@@ -23,10 +23,12 @@ const Sidebar = (props) => (
     </ul>
 
     <h3 className="sidebar-subheading">
-      <button>
-        Direct Messages <span>(#ppl)</span>
+      <button onClick={props.openUserList}>
+        Direct Messages <span>({props.totalNumUsers})</span>
       </button>
-      <button className="plus-button">
+      <button
+        className="plus-button"
+        onClick={props.openUserList}>
         +
       </button>
     </h3>

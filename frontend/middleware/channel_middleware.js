@@ -4,11 +4,13 @@ import { REQUEST_ALL_CHANNELS,
          receiveSingleChannel,
          SUBSCRIBE_TO_CHANNEL,
          updateSubscribedChannels,
-         UNSUBSCRIBE_FROM_CHANNEL } from '../actions/channel_actions';
+         UNSUBSCRIBE_FROM_CHANNEL,
+         CREATE_DIRECT_MESSAGE } from '../actions/channel_actions';
 import { fetchAllChannels,
          createChannel,
          subscribeToChannel,
-         unsubscribeFromChannel } from '../util/channel_api_util';
+         unsubscribeFromChannel,
+         createDirectMessage } from '../util/channel_api_util';
 import { hashHistory } from 'react-router';
 
 const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
@@ -27,6 +29,16 @@ const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
       };
       const error = e => console.log(e);
       createChannel(success, error, action.channelParams);
+      return next(action);
+    }
+    case CREATE_DIRECT_MESSAGE: {
+      const success = channel => {
+        dispatch(receiveSingleChannel(channel));
+        const id = Object.keys(channel)[0];
+        hashHistory.push(`/messages/${id}`);
+      };
+      const error = e => console.log(e);
+      createDirectMessage(success, error, action.channelParams);
       return next(action);
     }
     case SUBSCRIBE_TO_CHANNEL: {

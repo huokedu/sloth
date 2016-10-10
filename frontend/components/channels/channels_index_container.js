@@ -3,9 +3,11 @@ import { signOut } from '../../actions/session_actions';
 import { createChannel,
          subscribeToChannel } from '../../actions/channel_actions';
 import { fetchCurrentMessages } from '../../actions/message_actions';
+import { fetchAllUsers } from '../../actions/user_actions';
 import ChannelsIndex from './channels_index';
 
-const mapStateToProps = ({ channels, currentUser }) => ({
+const mapStateToProps = ({ users, channels, currentUser }) => ({
+  users,
   channels,
   currentUser,
 });
@@ -17,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCurrentMessages: (channelId) => {
     dispatch(fetchCurrentMessages(channelId));
   },
+  fetchAllUsers: () => dispatch(fetchAllUsers()),
 });
 
 export default connect(

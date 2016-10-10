@@ -1,9 +1,9 @@
 /* globals Pusher */
-
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
 import ChannelList from './modals/channel_list';
+import UserList from './modals/user_list';
 import NewChannelForm from './modals/new_channel_form';
 import Modal from 'react-modal';
 import Sidebar from './sidebar';
@@ -26,7 +26,7 @@ class ChannelsIndex extends React.Component {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        backgroundColor: '#fff',
         zIndex: 10,
       },
       content: {
@@ -35,6 +35,7 @@ class ChannelsIndex extends React.Component {
         left: 0,
         right: 0,
         bottom: 0,
+        height: '100vh',
         padding: '20px',
         zIndex: 11
       },
@@ -75,6 +76,18 @@ class ChannelsIndex extends React.Component {
     });
   }
 
+  openUserList() {
+    this.setState({
+      modalOpen: true,
+      modalContent: (
+        <UserList
+          users={this.props.users}
+          createDirectMessage={this.props.createDirectMessage}
+          closeModal={this.closeModal} />
+      ),
+    });
+  }
+
   closeModal() {
     this.setState({ modalOpen: false });
   }
@@ -83,6 +96,7 @@ class ChannelsIndex extends React.Component {
     if (!this.currentChannel) {
       this.renderDefaultChannel();
     }
+    this.props.fetchAllUsers();
   }
 
   componentDidUpdate() {
@@ -121,9 +135,11 @@ class ChannelsIndex extends React.Component {
         <Sidebar
           username={this.props.currentUser.username}
           totalNumChannels={Object.keys(this.props.channels.allChannels).length}
+          totalNumUsers={Object.keys(this.props.users).length}
           subscribedChannels={channelIndexItems}
           openChannelList={this.openChannelList.bind(this)}
           openChannelForm={this.openChannelForm.bind(this)}
+          openUserList={this.openUserList.bind(this)}
           signOut={this.signOut.bind(this)} />
 
         {this.props.children}
