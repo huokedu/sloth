@@ -11,8 +11,8 @@ class Api::MessagesController < ApplicationController
 
     if @message.save
       Pusher.trigger(
-        'new_messages',
-        @message.channel_id.to_s,
+        "channel_#{@message.channel_id}",
+        'new_message',
         {}
       )
       render :show
@@ -29,11 +29,11 @@ class Api::MessagesController < ApplicationController
       @message.save
 
       Pusher.trigger(
-        'new_messages',
-        @message.channel_id.to_s,
+        "channel_#{@message.channel_id}",
+        'new_message',
         {}
       )
-      
+
       render :show
     else
       render json: @message.errors.full_messages

@@ -1,3 +1,4 @@
+/* globals Pusher */
 import React from 'react';
 import Message from './message';
 import MessageForm from './message_form';
@@ -7,6 +8,24 @@ class MessageFeed extends React.Component {
     super(props);
 
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentChannel) {
+      if (!this.pusher) {
+        console.log('pusher instatiated');
+        this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
+          encrypted: true
+        });
+      }
+
+      this.pusher.unsubscribe(`channel_${this.props.currentChannel}`);
+      const channel = this.pusher.subscribe(`channel_${nextProps.currentChannel}`);
+      channel.bind('new_message', (data) => {
+        console.log('fetching new messages...');
+        this.props.fetchCurrentMessages(nextProps.currentChannel);
+      });
+    }
   }
 
   handleUnsubscribe() {

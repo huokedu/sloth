@@ -1,4 +1,3 @@
-/* globals Pusher */
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { hashHistory } from 'react-router';
@@ -83,26 +82,6 @@ class ChannelsIndex extends React.Component {
 
   closeModal() {
     this.setState({ modalOpen: false });
-  }
-
-  componentDidMount() {
-    this.props.fetchAllUsers();
-    this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
-     encrypted: true
-    });
-  }
-
-  componentDidUpdate() {
-    this.pusher.unsubscribe('new_messages');
-    const channel = this.pusher.subscribe('new_messages');
-    for (let id in this.props.currentUser.subscribed_channels) {
-      if (id === this.props.channels.currentChannel) {
-        channel.bind(`${id}`, (data) => {
-          console.log('fetching new messages');
-          this.props.fetchCurrentMessages(this.props.channels.currentChannel);
-        });
-      }
-    }
   }
 
   render() {
