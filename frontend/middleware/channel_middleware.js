@@ -17,7 +17,11 @@ import { hashHistory } from 'react-router';
 const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
   switch (action.type) {
     case REQUEST_ALL_CHANNELS: {
-      const success = channels => dispatch(receiveAllChannels(channels));
+      const success = channels => {
+        dispatch(receiveAllChannels(channels));
+        const channelId = Object.keys(channels)[0];
+        hashHistory.push(`messages/${channelId}`);
+      };
       const error = e => console.log(e);
       fetchAllChannels(success, error);
       return next(action);

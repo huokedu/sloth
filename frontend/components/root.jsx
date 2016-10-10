@@ -16,13 +16,15 @@ const Root = ({ store }) => {
     }
   }
 
-  function fetchAllChannels() {
+  function setupFeed() {
     redirectUnlessLoggedIn();
     store.dispatch(requestAllChannels());
   }
 
   function changeCurrentChannel(nextState) {
+    redirectUnlessLoggedIn();
     store.dispatch(switchChannel(nextState.params.channelId));
+
     if (!store.getState().messages[nextState.params.channelId]) {
       store.dispatch(fetchCurrentMessages(nextState.params.channelId));
     }
@@ -35,7 +37,7 @@ const Root = ({ store }) => {
           <Route path="signin" component={SignInFormContainer} />
           <Route path="signup" component={SignUpFormContainer} />
         </Route>
-        <Route path="/messages" component={ChannelsIndexContainer} onEnter={fetchAllChannels}>
+        <Route path="/messages" component={ChannelsIndexContainer} onEnter={setupFeed}>
           <Route path=":channelId" component={MessageFeedContainer} onEnter={changeCurrentChannel} />
         </Route>
       </Router>

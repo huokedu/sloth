@@ -28,7 +28,7 @@ class Message extends React.Component {
   }
 
   messageActions() {
-    if (window.currentUser.id === this.props.message.author.id) {
+    if (this.props.currentUser.id === this.props.message.author.id) {
       return(
         <ul className="message-actions">
           <li>

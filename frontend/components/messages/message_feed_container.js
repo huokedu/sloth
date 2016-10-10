@@ -7,10 +7,11 @@ import { fetchCurrentMessages,
          deleteMessage } from '../../actions/message_actions';
 import { withRouter } from 'react-router';
 
-const mapStateToProps = ({ channels, messages }) => ({
+const mapStateToProps = ({ channels, messages, currentUser }) => ({
   currentChannel: channels.currentChannel,
   allChannels: channels.allChannels,
   messages,
+  currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

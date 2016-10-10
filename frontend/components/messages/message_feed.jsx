@@ -32,6 +32,7 @@ class MessageFeed extends React.Component {
         for (let id in this.props.messages[thisChannel.id]) {
           messages.push(
             <Message
+              currentUser={this.props.currentUser}
               key={id}
               message={this.props.messages[thisChannel.id][id]}
               updateMessage={this.props.updateMessage}
@@ -39,7 +40,7 @@ class MessageFeed extends React.Component {
           );
         }
       }
-      
+
       return(
         <section className="message-feed">
           <header>
@@ -62,7 +63,8 @@ class MessageFeed extends React.Component {
             createMessage={this.props.createMessage} />
         </section>
       );
-    } else {
+    }
+    else {
       return <section></section>;
     }
   }

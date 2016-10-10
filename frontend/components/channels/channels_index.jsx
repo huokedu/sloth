@@ -42,11 +42,11 @@ class ChannelsIndex extends React.Component {
     };
   }
 
-  renderDefaultChannel() {
-    const currentUser = this.currentUser;
-    const defaultChannel = this.props.currentUser.subscribed_channels[0].id;
-    hashHistory.push(`/messages/${defaultChannel}`);
-  }
+  // renderDefaultChannel() {
+  //   const currentUser = this.props.currentUser;
+  //   const defaultChannel = this.props.currentUser.subscribed_channels[0].id;
+  //   hashHistory.push(`/messages/${defaultChannel}`);
+  // }
 
   signOut() {
     this.props.signOut();
@@ -93,26 +93,37 @@ class ChannelsIndex extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.currentChannel) {
-      this.renderDefaultChannel();
-    }
+    // if (!this.currentChannel) {
+    //   this.renderDefaultChannel();
+    // }
     this.props.fetchAllUsers();
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     const pusher = new Pusher('aea52d3bfe768bb2f4bb', {
      encrypted: true
     });
+    console.log(pusher);
 
     const channel = pusher.subscribe('new_messages');
+    console.log(channel);
     for (let id in this.props.currentUser.subscribed_channels) {
       if (id === this.props.channels.currentChannel) {
         channel.bind(`${id}`, (data) => {
+          console.log('fetching');
           this.props.fetchCurrentMessages(this.props.channels.currentChannel);
         });
       }
     }
   }
+
+  // componentWillUpdate() {
+  //   const pusher = new Pusher('aea52d3bfe768bb2f4bb', {
+  //    encrypted: true
+  //   });
+  //
+  //   pusher.unsubscribe('new_messages');
+  // }
 
   render() {
     const channelIndexItems = [];
