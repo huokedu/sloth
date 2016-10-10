@@ -8,6 +8,7 @@ import ChannelsIndexContainer from './channels/channels_index_container';
 import MessageFeedContainer from './messages/message_feed_container';
 import { requestAllChannels, switchChannel } from '../actions/channel_actions';
 import { fetchCurrentMessages } from '../actions/message_actions';
+import { fetchAllUsers } from '../actions/user_actions';
 
 const Root = ({ store }) => {
   function redirectUnlessLoggedIn() {
@@ -19,6 +20,7 @@ const Root = ({ store }) => {
   function setupFeed() {
     redirectUnlessLoggedIn();
     store.dispatch(requestAllChannels());
+    store.dispatch(fetchAllUsers());
   }
 
   function changeCurrentChannel(nextState) {

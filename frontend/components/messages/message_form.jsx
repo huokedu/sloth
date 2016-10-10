@@ -27,6 +27,10 @@ class MessageForm extends React.Component {
     this.setState({body: e.currentTarget.value});
   }
 
+  symbol() {
+    return this.props.channel.direct ? "" : "//";
+  }
+
   render() {
     return(
       <form className="message-form" onSubmit={this.handleSubmit}>
@@ -34,7 +38,7 @@ class MessageForm extends React.Component {
           type="text"
           onChange={this.updateForm}
           value={this.state.body}
-          placeholder={"Message #" + this.props.channel.name} />
+          placeholder={"Message " + this.symbol() + this.props.channel.name} />
         <input type="submit" className="message-form-submit" />
       </form>
     );

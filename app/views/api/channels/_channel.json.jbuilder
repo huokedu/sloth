@@ -1,6 +1,10 @@
 json.set! channel.id do
   json.id channel.id
-  json.name channel.name
+  if channel.direct
+    json.name (channel.name.split(',').reject {|name| name === current_user.username}).join(', ')
+  else
+    json.name channel.name
+  end
   json.purpose channel.purpose
   json.creator channel.creator
   json.direct channel.direct
@@ -9,4 +13,5 @@ json.set! channel.id do
     json.id member.id
     json.username member.username
   end
+  json.numMembers channel.members.length
 end

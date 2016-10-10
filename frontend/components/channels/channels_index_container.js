@@ -4,7 +4,6 @@ import { createChannel,
          subscribeToChannel,
          createDirectMessage } from '../../actions/channel_actions';
 import { fetchCurrentMessages } from '../../actions/message_actions';
-import { fetchAllUsers } from '../../actions/user_actions';
 import ChannelsIndex from './channels_index';
 
 const mapStateToProps = ({ users, channels, currentUser }) => ({
@@ -20,7 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCurrentMessages: (channelId) => {
     dispatch(fetchCurrentMessages(channelId));
   },
-  fetchAllUsers: () => dispatch(fetchAllUsers()),
   createDirectMessage: (channelParams) => {
     dispatch(createDirectMessage(channelParams));
   }

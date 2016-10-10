@@ -13,7 +13,7 @@ class MessageFeed extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentChannel) {
       if (!this.pusher) {
-        console.log('pusher instatiated');
+        console.log('pusher initialized!');
         this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
           encrypted: true
         });
@@ -63,15 +63,23 @@ class MessageFeed extends React.Component {
       return(
         <section className="message-feed">
           <header>
-            <h2>{thisChannel.name}</h2>
+            <h2 className={'direct-' + thisChannel.direct}>{thisChannel.name}</h2>
             <small>
-              {thisChannel.members.length} members | {thisChannel.purpose}
+              {thisChannel.members.length} members
+              {thisChannel.purpose ? ` | ${thisChannel.purpose}` : ''}
             </small>
             <button
               className="leave-channel-button"
               onClick={this.handleUnsubscribe}>Leave this channel</button>
           </header>
           <div className="message-feed-main">
+            <section className="channel-info">
+              <h2 className={'direct-' + thisChannel.direct}>{thisChannel.name}</h2>
+              <p>
+                {thisChannel.creator.username} created this channel on
+                {thisChannel.created_at}
+              </p>
+            </section>
             <ul id="message-list">
               {messages}
             </ul>
