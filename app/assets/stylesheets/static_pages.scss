@@ -635,9 +635,15 @@ body {
     border-radius: 4px;
     padding: 10px 20px;
     margin-top: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     font-weight: 400;
   }
+}
+
+.channel-form-info {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .channel-form-submit {
@@ -757,7 +763,7 @@ body {
     color: #fff
   }
 
-  button[disabled=true] {
+  button[disabled] {
     background: #f5f5f5;
   }
 }

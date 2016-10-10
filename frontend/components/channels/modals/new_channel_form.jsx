@@ -21,7 +21,17 @@ class NewChannelForm extends React.Component {
   }
 
   updateInput(field) {
-    return e => this.setState({[field]: e.currentTarget.value});
+    return (e) => {
+      if (field === 'name') {
+        const value = e.currentTarget.value;
+        const lastChar = value[value.length - 1];
+        if (lastChar !== ' ' && lastChar !== '.' && value.length <= 21) {
+          this.setState({[field]: e.currentTarget.value.toLowerCase()});
+        }
+      } else {
+        this.setState({[field]: e.currentTarget.value});
+      }
+    };
   }
 
   render() {
@@ -35,6 +45,9 @@ class NewChannelForm extends React.Component {
               value={this.state.name}
               onChange={this.updateInput('name')} />
           </label>
+          <span className="channel-form-info">
+            Names must be 21 characters or less, lowercase, and cannot contain spaces or periods.
+          </span>
 
           <label className="channel-form-label">Purpose
             <textarea
@@ -42,6 +55,9 @@ class NewChannelForm extends React.Component {
               placeholder="Briefly describe the purpose of this channel"
               onChange={this.updateInput('purpose')}></textarea>
           </label>
+          <span className="channel-form-info">
+            Give your channel a purpose that describes what it will be used for.
+          </span>
 
           <input className="channel-form-submit" type="submit" value="Create channel"/>
         </form>
