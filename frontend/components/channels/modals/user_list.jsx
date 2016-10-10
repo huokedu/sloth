@@ -11,6 +11,7 @@ class UserList extends React.Component {
     };
 
     this.addMember = this.addMember.bind(this);
+    this.removeMember = this.removeMember.bind(this);
   }
 
   addMember(member) {
@@ -44,9 +45,9 @@ class UserList extends React.Component {
     }
 
     const members = [];
-    for (let key in this.state.members) {
-      if (typeof key === 'number') {
-        members.push(key);
+    for (let key in this.state) {
+      if (key !== 'input' && this.state[key]) {
+        members.push(this.state[key]);
       }
     }
 
@@ -55,7 +56,8 @@ class UserList extends React.Component {
         <DirectMessageForm
           input={this.state.input}
           members={members}
-          updateInput={this.updateInput.bind(this)} />
+          updateInput={this.updateInput.bind(this)}
+          removeMember={this.removeMember} />
         <ul className="user-list">
           {userListItems}
         </ul>
