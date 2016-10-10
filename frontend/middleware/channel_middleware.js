@@ -5,7 +5,8 @@ import { REQUEST_ALL_CHANNELS,
          SUBSCRIBE_TO_CHANNEL,
          updateSubscribedChannels,
          UNSUBSCRIBE_FROM_CHANNEL,
-         CREATE_DIRECT_MESSAGE } from '../actions/channel_actions';
+         CREATE_DIRECT_MESSAGE,
+         updateDirectMessages } from '../actions/channel_actions';
 import { fetchAllChannels,
          createChannel,
          subscribeToChannel,
@@ -13,7 +14,7 @@ import { fetchAllChannels,
          createDirectMessage } from '../util/channel_api_util';
 import { hashHistory } from 'react-router';
 
-const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
+const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
   switch (action.type) {
     case REQUEST_ALL_CHANNELS: {
       const success = channels => dispatch(receiveAllChannels(channels));
@@ -32,12 +33,24 @@ const ChannelMiddleware = ({ dispatch }) => (next) => (action) => {
       return next(action);
     }
     case CREATE_DIRECT_MESSAGE: {
-      const success = channel => {
-        dispatch(receiveSingleChannel(channel));
-        const id = Object.keys(channel)[0];
-        hashHistory.push(`/messages/${id}`);
+      const success = channels => {
+        dispatch(updateSubscribedChannels(channels));
+        channels.forEach((channel) => {
+          if (channel.name === action.channelParams.channel.name) {
+            dispatch(receiveSingleChannel({[channel.id]: channel}));
+            hashHistory.push(`/messages/${channel.id}`);
+          }
+        });
       };
-      const error = e => console.log(e);
+      const error = e => {
+        const allChannels = getState().channels.allChannels;
+        Object.keys(allChannels).forEach((id) => {
+          if (allChannels[id].name === action.channelParams.channel.name) {
+            hashHistory.push(`/messages/${id}`);
+          }
+        });
+      };
+
       createDirectMessage(success, error, action.channelParams);
       return next(action);
     }

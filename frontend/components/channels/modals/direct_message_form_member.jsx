@@ -7,8 +7,10 @@ const DirectMessageFormMember = ({ member, removeMember }) => {
   }
 
   return(
-    <li>
-      <button type="button" onClick={handleClick}>
+    <li className="direct-message-form-member">
+      <button
+        type="button"
+        onClick={handleClick}>
         {member.username}
       </button>
     </li>

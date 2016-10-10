@@ -11,13 +11,7 @@ const SessionReducer = (state = {}, action) => {
       const newState = Object.assign({}, state);
       for (let id in action.channel) {
         const channel = action.channel[id];
-        if (channel.direct) {
-          newState.direct_messages.push({
-            id: channel.id,
-            name: channel.name,
-            purpose: channel.purpose,
-          });
-        } else {
+        if (!channel.direct) {
           newState.subscribed_channels.push({
             id: channel.id,
             name: channel.name,
@@ -29,7 +23,17 @@ const SessionReducer = (state = {}, action) => {
     }
     case UPDATE_SUBSCRIBED_CHANNELS: {
       const newState = Object.assign({}, state);
-      newState.subscribed_channels = action.channels;
+      newState.direct_messages = [];
+      newState.subscribed_channels = [];
+
+      action.channels.forEach((channel) => {
+        if (channel.direct) {
+          newState.direct_messages.push(channel);
+        } else {
+          newState.subscribed_channels.push(channel);
+        }
+      });
+
       return newState;
     }
     case SIGN_OUT: {

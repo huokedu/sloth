@@ -39,6 +39,7 @@ export const createDirectMessage = (success, error, channelParams) => {
   $.ajax({
     method: 'POST',
     url: 'api/direct_messages',
+    data: channelParams,
     success,
     error,
   });

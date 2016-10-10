@@ -31,18 +31,23 @@ class UserList extends React.Component {
 
   render() {
     const regex = new RegExp(this.state.input);
-    const userListItems = [];
+    const users = [];
     for (let id in this.props.users) {
       const user = this.props.users[id];
       if (user.username.match(regex)) {
-        userListItems.push(
-          <UserListItem
-            key={user.id}
-            user={user}
-            addMember={this.addMember} />
-        );
+        users.push(user);
       }
     }
+
+    const userListItems = [];
+    users.forEach((user) => {
+      userListItems.push(
+        <UserListItem
+          key={user.id}
+          user={user}
+          addMember={this.addMember} />
+      );
+    });
 
     const members = [];
     for (let key in this.state) {
@@ -56,8 +61,11 @@ class UserList extends React.Component {
         <DirectMessageForm
           input={this.state.input}
           members={members}
+          createDirectMessage={this.props.createDirectMessage}
           updateInput={this.updateInput.bind(this)}
-          removeMember={this.removeMember} />
+          removeMember={this.removeMember}
+          users={users}
+          closeModal={this.props.closeModal} />
         <ul className="user-list">
           {userListItems}
         </ul>

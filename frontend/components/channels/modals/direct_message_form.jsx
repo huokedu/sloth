@@ -10,6 +10,8 @@ class DirectMessageForm extends React.Component {
       members: this.props.members,
       buttonDisabled: true,
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   updateInput(e) {
@@ -29,6 +31,27 @@ class DirectMessageForm extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    if (this.state.members.length) {
+      const name = this.state.members.concat([window.currentUser]).map((member) => {
+        return member.username;
+      }).sort().join(',');
+      const members = this.state.members.map(member => member.id);
+      const channelParams = ({
+        channel: {name, direct: true},
+        members,
+      });
+      this.props.createDirectMessage(channelParams);
+      this.props.closeModal();
+    }
+  }
+
+  componentDidMount() {
+    // this is for the backspace functionality
+  }
+
   render() {
     const selectedMembers = [];
     this.props.members.forEach((member) => {
@@ -43,17 +66,21 @@ class DirectMessageForm extends React.Component {
     return(
       <section className='direct-message-form'>
         <h2>Direct Messages</h2>
-        <form>
-          <ul>
+        <form onSubmit={this.handleSubmit}>
+          <ul className="direct-message-form-members">
             {selectedMembers}
           </ul>
           <input
             type="text"
             onChange={this.updateInput.bind(this)}
             value={this.state.input}
-            placeholder="Find or start a conversation" />
-          <button disabled={this.state.buttonDisabled}>Go</button>
+            placeholder={selectedMembers.length ? "" : "Find or start a conversation"} />
+          <input type="submit" style={{display: 'none'}} />
         </form>
+        <button
+          onClick={this.handleSubmit}
+          className="direct-message-form-submit"
+          disabled={this.state.buttonDisabled}>Go</button>
       </section>
     );
   }

@@ -14,21 +14,24 @@ class Api::ChannelsController < ApplicationController
       @channel.members << current_user
       render :show
     else
-      render json: @channel.errors.full_messages
+      render json: @channel.errors.full_messages, status: 422
     end
   end
 
   def create_direct_message
     @channel = Channel.new(channel_params)
+    @channel.creator_id = current_user.id
 
     if @channel.save
       params[:members].each do |member|
-        @channel.members << User.find_by_id(member.id)
+        @channel.members << User.find_by_id(member)
       end
       @channel.members << current_user
-      render :show
+
+      @subscribed_channels = current_user.subscribed_channels
+      render :subscribed_channels
     else
-      render json: @channel.errors.full_messages
+      render json: @channel.errors.full_messages, status: 422
     end
   end
 

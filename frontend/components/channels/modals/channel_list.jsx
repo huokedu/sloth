@@ -4,7 +4,9 @@ import ChannelListItem from './channel_list_item';
 const ChannelList = ({ allChannels, subscribeToChannel, closeModal }) => {
   const channels = [];
   for (let id in allChannels) {
-    channels.push(allChannels[id]);
+    if (!allChannels[id].direct) {
+      channels.push(allChannels[id]);
+    }
   }
 
   const channelItems = channels.map((channel) => (

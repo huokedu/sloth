@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { signOut } from '../../actions/session_actions';
 import { createChannel,
-         subscribeToChannel } from '../../actions/channel_actions';
+         subscribeToChannel,
+         createDirectMessage } from '../../actions/channel_actions';
 import { fetchCurrentMessages } from '../../actions/message_actions';
 import { fetchAllUsers } from '../../actions/user_actions';
 import ChannelsIndex from './channels_index';
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCurrentMessages(channelId));
   },
   fetchAllUsers: () => dispatch(fetchAllUsers()),
+  createDirectMessage: (channelParams) => {
+    dispatch(createDirectMessage(channelParams));
+  }
 });
 
 export default connect(

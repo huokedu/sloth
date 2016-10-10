@@ -39,7 +39,7 @@ class MessageFeed extends React.Component {
           );
         }
       }
-
+      
       return(
         <section className="message-feed">
           <header>

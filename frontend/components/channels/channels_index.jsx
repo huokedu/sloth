@@ -108,7 +108,6 @@ class ChannelsIndex extends React.Component {
     for (let id in this.props.currentUser.subscribed_channels) {
       if (id === this.props.channels.currentChannel) {
         channel.bind(`${id}`, (data) => {
-          console.log('fetching');
           this.props.fetchCurrentMessages(this.props.channels.currentChannel);
         });
       }
@@ -130,13 +129,35 @@ class ChannelsIndex extends React.Component {
       }
     }
 
+    const directIndexItems = [];
+    const directMessages = this.props.currentUser.direct_messages;
+    for (let id in directMessages) {
+      if (Object.hasOwnProperty.call(directMessages, id)) {
+        const channel = directMessages[id];
+        directIndexItems.push(
+          <ChannelsIndexItem
+            key={channel.id}
+            channel={channel}
+            currentChannel={this.props.channels.currentChannel} />
+        );
+      }
+    }
+
+    let totalNumChannels = 0;
+    Object.keys(this.props.channels.allChannels).forEach((id) => {
+      if (!this.props.channels.allChannels[id].direct) {
+        totalNumChannels += 1;
+      }
+    });
+
     return(
       <div className="group">
         <Sidebar
           username={this.props.currentUser.username}
-          totalNumChannels={Object.keys(this.props.channels.allChannels).length}
+          totalNumChannels={totalNumChannels}
           totalNumUsers={Object.keys(this.props.users).length}
           subscribedChannels={channelIndexItems}
+          directMessages={directIndexItems}
           openChannelList={this.openChannelList.bind(this)}
           openChannelForm={this.openChannelForm.bind(this)}
           openUserList={this.openUserList.bind(this)}

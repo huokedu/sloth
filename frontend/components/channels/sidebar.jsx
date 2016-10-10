@@ -32,7 +32,9 @@ const Sidebar = (props) => (
         +
       </button>
     </h3>
-    <ul className="channel-list"></ul>
+    <ul className="channel-list">
+      {props.directMessages}
+    </ul>
   </section>
 );
 

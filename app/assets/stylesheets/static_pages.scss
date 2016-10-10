@@ -548,7 +548,7 @@ body {
   padding-left: 10px;
 }
 
-.channel-search, .channel-form, .direct-message-form {
+.channel-search, .channel-form {
   width: 640px;
   height: 400px;
   margin: 100px auto;
@@ -711,6 +711,7 @@ body {
     }
   }
 
+
   button{
     background: rgb(251,251,250);
     margin: 0 10px 10px;
@@ -738,10 +739,20 @@ body {
 }
 
 .direct-message-form {
-  height: auto;
-  margin-bottom: 0;
+  width: 640px;
+  margin: 100px auto 0;
+  color: #555459;
+  -webkit-font-smoothing: antialiased;
 
-  input, button {
+  h2 {
+    font-size: 32px;
+    font-weight: 900;
+    padding-bottom: 40px;
+    color: #2c2d30;
+  }
+
+
+  form, .direct-message-form-submit {
     border-radius: 4px;
     display: inline-block;
     margin-top: 5px;
@@ -749,27 +760,40 @@ body {
     font-size: 20px;
   }
 
-  input[type="text"] {
-    padding: 12px 10px;
-    width: 560px;
+  form {
+    min-height: 55px;
+    position: relative;
+    padding: 10px;
     border: 1px solid #C5C5C5;
+    width: 560px;
   }
 
-  button {
-    padding: 12px 15px;
-    margin-left: 15px;
-    font-weight: 900;
-    background: #2ab27b;
-    color: #fff
+  input[type="text"] {
+    display: inline-block;
+    min-width: 240px;
   }
+}
 
-  button[disabled] {
+.direct-message-form-submit {
+  cursor: pointer;
+  padding: 12px 15px;
+  margin-left: 15px;
+  font-weight: 900;
+  background: #2ab27b;
+  color: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 20px;
+
+  &[disabled] {
     background: #f5f5f5;
   }
 }
 
 .user-list {
-  width: 640px;
+  width: 600px;
   height: 400px;
   color: #555459;
   margin: 0 auto;
@@ -797,6 +821,36 @@ body {
       background: #edf7fd;
       border: 1px solid #d3ecfa;
       border-radius: 6px;
+    }
+  }
+}
+
+.direct-message-form-members {
+  display: inline-block;
+  top: 10px;
+  max-width: 560px;
+}
+
+.direct-message-form-member {
+  display:inline-block;
+  color: #fff;
+  background: #3aa3e3;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 3.2px;
+  margin: 4px 6px 0 0;
+  position: relative;
+
+  button {
+    padding: 5px;
+
+    &:after {
+      content: "✕";
+      display: inline-block;
+      padding-left: 10px;
+      font-weight: 400;
+      font-size: 14px;
     }
   }
 }
