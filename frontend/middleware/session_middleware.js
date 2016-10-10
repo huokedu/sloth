@@ -1,5 +1,6 @@
 import { SIGN_IN, SIGN_UP, SIGN_OUT, receiveCurrentUser, receiveErrors } from '../actions/session_actions';
 import { signIn, signUp, signOut } from '../util/session_api_util';
+import { hashHistory } from 'react-router';
 
 const SessionMiddleware = ({ dispatch }) => (next) => (action) => {
   switch (action.type) {
@@ -16,7 +17,10 @@ const SessionMiddleware = ({ dispatch }) => (next) => (action) => {
       break;
     }
     case SIGN_OUT: {
-      signOut(() => next(action));
+      signOut(() => {
+        next(action);
+        hashHistory.push('/');
+      });
       break;
     }
     default: {
