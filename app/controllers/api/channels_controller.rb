@@ -22,8 +22,8 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      params[:users].each do |user|
-        @channel.members << User.find_by_id(user.id)
+      params[:members].each do |member|
+        @channel.members << User.find_by_id(member.id)
       end
       @channel.members << current_user
       render :show
