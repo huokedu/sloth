@@ -12,4 +12,5 @@ json.array! @subscribed_channels do |channel|
   json.members channel.members
   json.numMembers channel.members.length
   json.created_at channel.created_at.to_date
+  json.notifications channel.notifications.where(user_id: current_user.id).length
 end

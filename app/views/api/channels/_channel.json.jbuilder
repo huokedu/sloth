@@ -14,4 +14,5 @@ json.set! channel.id do
     json.username member.username
   end
   json.numMembers channel.members.length
+  json.notifications channel.notifications.where(user_id: current_user.id).length
 end

@@ -16,6 +16,7 @@ class Message < ActiveRecord::Base
   belongs_to :author,
     class_name: 'User',
     foreign_key: :author_id
+  has_many :notifications
 
   validates :body, :author, :channel, presence: true
 end

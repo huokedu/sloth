@@ -18,6 +18,10 @@ class Channel < ActiveRecord::Base
   has_many :members,
     through: :channel_memberships,
     source: :member
+  has_many :messages
+  has_many :notifications,
+   through: :messages,
+   source: :notifications
 
   validates :name, presence: true, uniqueness: true
   validates :creator, presence: true

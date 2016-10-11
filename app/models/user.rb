@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :subscribed_channels,
     through: :channel_memberships,
     source: :channel
+  has_many :notifications
   has_attached_file :avatar,
     default_url: Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
 

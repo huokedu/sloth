@@ -10,6 +10,17 @@ class Api::MessagesController < ApplicationController
     @message.channel_id = params[:channel_id]
 
     if @message.save
+      other_members = @message.channel.members.reject do |member|
+        member.id === current_user.id
+      end
+
+      other_members.each do |member|
+        Notification.create({
+          user_id: member.id,
+          message_id: @message.id
+        })
+      end
+
       Pusher.trigger(
         "channel_#{@message.channel_id}",
         'new_message',
