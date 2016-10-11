@@ -31,7 +31,7 @@ const ChannelReducer = (state = defaultState, action) => {
     case UPDATE_SUBSCRIBED_CHANNELS: {
       const newState = Object.assign({}, state);
       const newChannel = action.channels[action.channels.length - 1];
-      newState.currentChannel = newChannel.id;
+      // newState.currentChannel = newChannel.id;
       if (newChannel.direct) {
         newState.allChannels[newChannel.id] = newChannel;
       }

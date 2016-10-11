@@ -4,7 +4,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def subscriptions
-    @channels = current_user.subscribed_channels;
+    @subscribed_channels = current_user.subscribed_channels;
     render :subscribed_channels
   end
 
