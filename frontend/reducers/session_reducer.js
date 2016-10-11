@@ -41,9 +41,6 @@ const SessionReducer = (state = {}, action) => {
       const newState = Object.assign({}, state);
 
         newState.direct_messages.forEach((channel) => {
-          console.log(typeof channel.id);
-          console.log(typeof action.channelId);
-          console.log(channel.id === parseInt(action.channelId));
           if (channel.id === parseInt(action.channelId)) {
             channel.notifications = 0;
           }
