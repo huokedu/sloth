@@ -22,9 +22,9 @@ class Api::MessagesController < ApplicationController
       end
 
       Pusher.trigger(
-        "channel_#{@message.channel_id}",
+        "sloth",
         'new_message',
-        {}
+        {channelId: @message.channel_id}
       )
       render :show
     else
@@ -40,9 +40,9 @@ class Api::MessagesController < ApplicationController
       @message.save
 
       Pusher.trigger(
-        "channel_#{@message.channel_id}",
+        "sloth",
         'new_message',
-        {}
+        {channelId: @message.channel_id}
       )
 
       render :show
