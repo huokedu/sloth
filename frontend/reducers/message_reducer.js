@@ -1,6 +1,7 @@
 import { RECEIVE_CURRENT_MESSAGES,
          RECEIVE_SINGLE_MESSAGE,
          REMOVE_SINGLE_MESSAGE, } from '../actions/message_actions';
+import { SIGN_OUT } from '../actions/session_actions';
 
 const MessageReducer = (state = {}, action) => {
   switch (action.type) {
@@ -22,6 +23,9 @@ const MessageReducer = (state = {}, action) => {
       const newState = Object.assign({}, state);
       delete(newState[action.channelId][action.messageId]);
       return newState;
+    }
+    case SIGN_OUT: {
+      return {};
     }
     default: {
       return state;

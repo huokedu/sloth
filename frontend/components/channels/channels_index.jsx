@@ -73,6 +73,7 @@ class ChannelsIndex extends React.Component {
       modalOpen: true,
       modalContent: (
         <UserList
+          currentUser={this.props.currentUser}
           users={this.props.users}
           createDirectMessage={this.props.createDirectMessage}
           closeModal={this.closeModal} />

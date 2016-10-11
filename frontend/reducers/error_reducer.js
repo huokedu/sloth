@@ -1,4 +1,5 @@
 import { RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/session_actions';
+import { SIGN_OUT } from '../actions/session_actions';
 
 const ErrorReducer = (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +7,9 @@ const ErrorReducer = (state = {}, action) => {
       return action.errors.responseJSON;
     }
     case CLEAR_ERRORS: {
+      return {};
+    }
+    case SIGN_OUT: {
       return {};
     }
     default: {

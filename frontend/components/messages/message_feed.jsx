@@ -13,16 +13,18 @@ class MessageFeed extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentChannel) {
       if (!this.pusher) {
-        console.log('pusher initialized!');
+        console.log('Pusher: Initializing!');
         this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
           encrypted: true
         });
       }
 
       this.pusher.unsubscribe(`channel_${this.props.currentChannel}`);
-      const channel = this.pusher.subscribe(`channel_${nextProps.currentChannel}`);
+      const channel = this.pusher.subscribe(
+        `channel_${nextProps.currentChannel}`
+      );
       channel.bind('new_message', (data) => {
-        console.log('fetching new messages...');
+        console.log('Pusher: fetching new messages...');
         this.props.fetchCurrentMessages(nextProps.currentChannel);
       });
     }
@@ -40,6 +42,11 @@ class MessageFeed extends React.Component {
     if (end) {
       end.scrollIntoView();
     }
+  }
+
+  componentWillUnmount() {
+    this.pusher.unsubscribe(`channel_${this.props.currentChannel}`);
+    console.log('Pusher: Goodbye!');
   }
 
   render() {
@@ -66,7 +73,9 @@ class MessageFeed extends React.Component {
       return(
         <section className="message-feed">
           <header>
-            <h2 className={'direct-' + thisChannel.direct}>{thisChannel.name}</h2>
+            <h2 className={'direct-' + thisChannel.direct}>
+              {thisChannel.name}
+            </h2>
             <small>
               {thisChannel.members.length} members
               {thisChannel.purpose ? ` | ${thisChannel.purpose}` : ''}
@@ -77,9 +86,12 @@ class MessageFeed extends React.Component {
           </header>
           <div className="message-feed-main">
             <section className="channel-info">
-              <h2 className={'direct-' + thisChannel.direct}>{thisChannel.name}</h2>
+              <h2 className={'direct-' + thisChannel.direct}>
+                {thisChannel.name}
+              </h2>
               <p>
-                {thisChannel.creator.username} created this channel on {thisChannel.created_at}
+                {thisChannel.creator.username} created this
+                channel on {thisChannel.created_at}
               </p>
             </section>
             <ul id="message-list">

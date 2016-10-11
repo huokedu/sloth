@@ -60,6 +60,7 @@ class UserList extends React.Component {
       <section>
         <DirectMessageForm
           input={this.state.input}
+          currentUser={this.props.currentUser}
           members={members}
           createDirectMessage={this.props.createDirectMessage}
           updateInput={this.updateInput.bind(this)}

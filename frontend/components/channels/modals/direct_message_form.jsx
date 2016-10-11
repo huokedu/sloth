@@ -35,7 +35,7 @@ class DirectMessageForm extends React.Component {
     e.preventDefault();
 
     if (this.state.members.length) {
-      const name = this.state.members.concat([window.currentUser]).map((member) => {
+      const name = this.state.members.concat([this.props.currentUser]).map((member) => {
         return member.username;
       }).sort().join(',');
       const members = this.state.members.map(member => member.id);
