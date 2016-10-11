@@ -6,8 +6,10 @@ json.array! @subscribed_channels do |channel|
     json.name channel.name
   end
 
+  json.creator channel.creator
   json.purpose channel.purpose
   json.direct channel.direct
   json.members channel.members
   json.numMembers channel.members.length
+  json.created_at channel.created_at.to_date
 end

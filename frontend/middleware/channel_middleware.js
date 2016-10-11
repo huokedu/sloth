@@ -20,7 +20,9 @@ const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
       const success = channels => {
         dispatch(receiveAllChannels(channels));
         const channelId = Object.keys(channels)[0];
-        hashHistory.push(`messages/${channelId}`);
+        if (!window.location.hash.match(/\/messages\/\d+/)) {
+          hashHistory.push(`messages/${channelId}`);
+        }
       };
       const error = e => console.log(e);
       fetchAllChannels(success, error);
