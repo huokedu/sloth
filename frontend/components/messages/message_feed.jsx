@@ -76,8 +76,7 @@ class MessageFeed extends React.Component {
             <section className="channel-info">
               <h2 className={'direct-' + thisChannel.direct}>{thisChannel.name}</h2>
               <p>
-                {thisChannel.creator.username} created this channel on
-                {thisChannel.created_at}
+                {thisChannel.creator.username} created this channel on {thisChannel.created_at}
               </p>
             </section>
             <ul id="message-list">
