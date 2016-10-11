@@ -592,6 +592,15 @@ body {
   }
 }
 
+.message-avatar {
+  width: 36px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  border-radius: 4px;
+  background: #ccc;
+}
+
 .message-username {
   margin-top: 10px;
   color: #2c2d30;
@@ -606,6 +615,7 @@ body {
   position: relative;
   font-size: 14px;
   word-wrap: break-word;
+  padding-left: 50px;
 
   &:hover {
     background: #f9f9f9;

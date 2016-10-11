@@ -58,6 +58,7 @@ class Message extends React.Component {
       if (this.props.previousMessageAuthor.id !== message.author.id) {
         messageHeader = (
           <div>
+            <img className="message-avatar" src={message.author.avatar_url} />
             <h3 className="message-username">{message.author.username}</h3>
             <span className="message-time">{message.created_at}</span>
           </div>
@@ -66,6 +67,7 @@ class Message extends React.Component {
     } else {
       messageHeader = (
         <div>
+          <img className="message-avatar" src={message.author.avatar_url} />
           <h3 className="message-username">{message.author.username}</h3>
           <span className="message-time">{message.created_at}</span>
         </div>

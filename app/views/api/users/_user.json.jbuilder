@@ -1,4 +1,7 @@
-json.extract! user, :id, :username
+json.id user.id
+json.username user.username
+json.avatar_url asset_path(user.avatar.url)
+
 json.subscribed_channels user.subscribed_channels.where(direct: false) do |channel|
   json.id channel.id
   json.name channel.name

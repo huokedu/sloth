@@ -1,6 +1,8 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+    avatar = Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
+    @user.avatar = avatar
 
     if @user.save
       login!(@user)
