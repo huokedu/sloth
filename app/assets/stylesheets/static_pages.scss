@@ -593,9 +593,10 @@ body {
 }
 
 .message-username {
+  margin-top: 10px;
   color: #2c2d30;
   font-weight: 900;
-  display: inline;
+  display: inline-block;
   font-size: 14px;
   padding-right: 4px;
 }
@@ -604,7 +605,6 @@ body {
   width: 100%;
   position: relative;
   font-size: 14px;
-  padding-bottom: 10px;
   word-wrap: break-word;
 
   &:hover {
@@ -613,6 +613,10 @@ body {
     .message-actions {
       display: block;
     }
+  }
+
+  p {
+    line-height: 1.5;
   }
 }
 

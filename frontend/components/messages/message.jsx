@@ -52,6 +52,25 @@ class Message extends React.Component {
 
   render() {
     const message = this.props.message;
+    let messageHeader;
+
+    if (this.props.previousMessageAuthor) {
+      if (this.props.previousMessageAuthor.id !== message.author.id) {
+        messageHeader = (
+          <div>
+            <h3 className="message-username">{message.author.username}</h3>
+            <span className="message-time">{message.created_at}</span>
+          </div>
+        );
+      }
+    } else {
+      messageHeader = (
+        <div>
+          <h3 className="message-username">{message.author.username}</h3>
+          <span className="message-time">{message.created_at}</span>
+        </div>
+      );
+    }
 
     if (this.state.messageFormOpen) {
       return(
@@ -65,8 +84,7 @@ class Message extends React.Component {
     } else {
       return(
         <li className="message-item">
-          <h3 className="message-username">{message.author.username}</h3>
-          <span className="message-time">{message.created_at}</span>
+          {messageHeader}
           <p className="message-body">
             {message.body}
             <span className="message-edited">

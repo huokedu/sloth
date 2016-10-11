@@ -48,15 +48,18 @@ class MessageFeed extends React.Component {
 
       const messages = [];
       if (this.props.messages) {
+        let previousMessageAuthor;
         for (let id in this.props.messages[thisChannel.id]) {
           messages.push(
             <Message
               currentUser={this.props.currentUser}
               key={id}
+              previousMessageAuthor={previousMessageAuthor}
               message={this.props.messages[thisChannel.id][id]}
               updateMessage={this.props.updateMessage}
               deleteMessage={this.props.deleteMessage} />
           );
+          previousMessageAuthor = this.props.messages[thisChannel.id][id].author;
         }
       }
 
