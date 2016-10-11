@@ -6,12 +6,14 @@ import { REQUEST_ALL_CHANNELS,
          updateSubscribedChannels,
          UNSUBSCRIBE_FROM_CHANNEL,
          CREATE_DIRECT_MESSAGE,
-         updateDirectMessages } from '../actions/channel_actions';
+         updateDirectMessages,
+         CLEAR_NOTIFICATIONS } from '../actions/channel_actions';
 import { fetchAllChannels,
          createChannel,
          subscribeToChannel,
          unsubscribeFromChannel,
-         createDirectMessage } from '../util/channel_api_util';
+         createDirectMessage,
+         clearNotifications } from '../util/channel_api_util';
 import { hashHistory } from 'react-router';
 
 const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
@@ -78,6 +80,11 @@ const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
       };
       const error = e => console.log(e);
       unsubscribeFromChannel(success, error, action.channelId);
+      return next(action);
+    }
+    case CLEAR_NOTIFICATIONS: {
+      const complete = res => console.log(res);
+      clearNotifications(complete, action.channelId);
       return next(action);
     }
     default: {

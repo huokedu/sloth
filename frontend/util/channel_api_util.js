@@ -44,3 +44,11 @@ export const createDirectMessage = (success, error, channelParams) => {
     error,
   });
 };
+
+export const clearNotifications = (complete, channelId) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/channels/${channelId}/notifications`,
+    complete
+  });
+};

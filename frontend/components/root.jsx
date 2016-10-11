@@ -6,7 +6,9 @@ import SignInFormContainer from './session_forms/signin_form_container';
 import SignUpFormContainer from './session_forms/signup_form_container';
 import ChannelsIndexContainer from './channels/channels_index_container';
 import MessageFeedContainer from './messages/message_feed_container';
-import { requestAllChannels, switchChannel } from '../actions/channel_actions';
+import { requestAllChannels,
+         switchChannel,
+         clearNotifications } from '../actions/channel_actions';
 import { fetchCurrentMessages } from '../actions/message_actions';
 import { fetchAllUsers } from '../actions/user_actions';
 
@@ -25,6 +27,7 @@ const Root = ({ store }) => {
 
   function changeCurrentChannel(nextState) {
     redirectUnlessLoggedIn();
+    store.dispatch(clearNotifications(nextState.params.channelId));
     store.dispatch(switchChannel(nextState.params.channelId));
 
     if (!store.getState().messages[nextState.params.channelId]) {

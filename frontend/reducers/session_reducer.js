@@ -1,6 +1,7 @@
 import { RECEIVE_CURRENT_USER, SIGN_OUT } from '../actions/session_actions';
 import { RECEIVE_SINGLE_CHANNEL,
-         UPDATE_SUBSCRIBED_CHANNELS } from '../actions/channel_actions';
+         UPDATE_SUBSCRIBED_CHANNELS,
+         CLEAR_NOTIFICATIONS } from '../actions/channel_actions';
 
 const SessionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -33,6 +34,26 @@ const SessionReducer = (state = {}, action) => {
           newState.subscribed_channels.push(channel);
         }
       });
+
+      return newState;
+    }
+    case CLEAR_NOTIFICATIONS: {
+      const newState = Object.assign({}, state);
+
+        newState.direct_messages.forEach((channel) => {
+          console.log(typeof channel.id);
+          console.log(typeof action.channelId);
+          console.log(channel.id === parseInt(action.channelId));
+          if (channel.id === parseInt(action.channelId)) {
+            channel.notifications = 0;
+          }
+        });
+
+        newState.subscribed_channels.forEach((channel) => {
+          if (channel.id === parseInt(action.channelId)) {
+            channel.notifications = 0;
+          }
+        });
 
       return newState;
     }

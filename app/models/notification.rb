@@ -12,6 +12,9 @@
 class Notification < ActiveRecord::Base
   belongs_to :message
   belongs_to :user
+  has_one :channel,
+    through: :message,
+    source: :channel
 
   validates :user, :message, presence: true
   validates_uniqueness_of :user, scope: :message
