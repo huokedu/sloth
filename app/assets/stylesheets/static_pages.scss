@@ -472,9 +472,12 @@ body {
     }
   }
 
-  .channel-selected .direct:before {
-    color: #4c9689;
-    background: #fff;
+  .channel-selected {
+    .d3:before, .d4:before, .d5:before,
+    .d6:before, .d7:before, .d8:before {
+      color: #4c9689;
+      background: #fff;
+    }
   }
 }
 
