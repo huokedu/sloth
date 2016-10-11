@@ -3,6 +3,11 @@ class Api::ChannelsController < ApplicationController
     @channels = Channel.includes(:members).all
   end
 
+  def subscriptions
+    @channels = current_user.subscribed_channels;
+    render :subscribed_channels
+  end
+
   def show
   end
 

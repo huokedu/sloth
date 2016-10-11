@@ -8,6 +8,7 @@ export const SUBSCRIBE_TO_CHANNEL = 'SUBSCRIBE_TO_CHANNEL';
 export const UNSUBSCRIBE_FROM_CHANNEL = 'UNSUBSCRIBE_FROM_CHANNEL';
 export const UPDATE_SUBSCRIBED_CHANNELS = 'UPDATE_SUBSCRIBED_CHANNELS';
 export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
+export const FETCH_SUBSCRIBED_CHANNELS = 'FETCH_SUBSCRIBED_CHANNELS';
 
 
 export const requestAllChannels = () => ({
@@ -57,4 +58,8 @@ export const createDirectMessage = (channelParams) => ({
 export const clearNotifications = (channelId) => ({
   type: CLEAR_NOTIFICATIONS,
   channelId,
+});
+
+export const fetchSubscribedChannels = () => ({
+  type: FETCH_SUBSCRIBED_CHANNELS,
 });

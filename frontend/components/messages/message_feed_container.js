@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import MessageFeed from './message_feed';
-import { unsubscribeFromChannel } from '../../actions/channel_actions';
+import { unsubscribeFromChannel,
+         fetchSubscribedChannels } from '../../actions/channel_actions';
 import { fetchCurrentMessages,
          createMessage,
          updateMessage,
@@ -29,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deleteMessage: (channelId, messageId) => {
     dispatch(deleteMessage(channelId, messageId));
+  },
+  fetchSubscribedChannels: () => {
+    dispatch(fetchSubscribedChannels());
   },
 });
 

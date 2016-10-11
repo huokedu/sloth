@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post 'api/direct_messages', to: 'api/channels#create_direct_message'
   post 'api/channels/:id/subscription', to: 'api/channels#subscribe'
   delete 'api/channels/:id/subscription', to: 'api/channels#unsubscribe'
+  get 'api/subscriptions', to: 'api/channels#subscriptions'
   delete 'api/channels/:id/notifications', to: 'api/notifications#destroy'
 end

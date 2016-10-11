@@ -10,24 +10,19 @@ class MessageFeed extends React.Component {
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentChannel) {
-      if (!this.pusher) {
-        console.log('Pusher: Initializing!');
-        this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
-          encrypted: true
-        });
-      }
+  componentDidMount() {
+    console.log('Pusher: Initializing!');
+    this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
+      encrypted: true
+    });
 
-      this.pusher.unsubscribe(`channel_${this.props.currentChannel}`);
-      const channel = this.pusher.subscribe(
-        `channel_${nextProps.currentChannel}`
-      );
-      channel.bind('new_message', (data) => {
-        console.log('Pusher: fetching new messages...');
-        this.props.fetchCurrentMessages(nextProps.currentChannel);
-      });
-    }
+    const channel = this.pusher.subscribe('sloth');
+
+    channel.bind('new_message', (data) => {
+      console.log('Pusher: fetching new messages...');
+      this.props.fetchCurrentMessages(data.channelId);
+      this.props.fetchSubscribedChannels();
+    });
   }
 
   handleUnsubscribe() {

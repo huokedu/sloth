@@ -52,3 +52,11 @@ export const clearNotifications = (complete, channelId) => {
     complete
   });
 };
+
+export const fetchSubscribedChannels = (success) => {
+  $.ajax({
+    method: 'GET',
+    url: 'api/subscriptions',
+    success,
+  });
+};
