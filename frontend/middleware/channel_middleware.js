@@ -45,9 +45,12 @@ const ChannelMiddleware = ({ dispatch, getState }) => (next) => (action) => {
     case CREATE_DIRECT_MESSAGE: {
       const success = channels => {
         dispatch(updateSubscribedChannels(channels));
+        const servername = action.channelParams.channel.name;
+        const storename = servername.split(',').filter((name) => {
+          return name !== getState().currentUser.username;
+        }).sort().join(', ');
         channels.forEach((channel) => {
-          if (channel.name === action.channelParams.channel.name) {
-            dispatch(receiveSingleChannel({[channel.id]: channel}));
+          if (channel.name === storename) {
             hashHistory.push(`/messages/${channel.id}`);
           }
         });
