@@ -27,6 +27,15 @@ class Message extends React.Component {
     );
   }
 
+  image() {
+    const url = this.props.message.image_url;
+    if (url !== '/images/original/missing.png') {
+      return(
+        <img className="message-gif" src={this.props.message.image_url} />
+      );
+    }
+  }
+
   messageActions() {
     if (this.props.currentUser.id === this.props.message.author.id) {
       return(
@@ -92,6 +101,7 @@ class Message extends React.Component {
             <span className="message-edited">
               {message.edited ? "(edited)" : ""}
             </span>
+            {this.image()}
           </p>
           {this.messageActions()}
         </li>

@@ -35,3 +35,11 @@ export const deleteMessage = (success, error, messageId) => {
     error,
   });
 };
+
+export const fetchGif = (success, query) => {
+  $.ajax({
+    method: 'GET',
+    url: `http://api.giphy.com/v1/gifs/search?q=${query}&rating=pg-13&api_key=dc6zaTOxFJmzC`,
+    success,
+  });
+};

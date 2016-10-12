@@ -68,7 +68,7 @@ class Api::MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, :image)
   end
 
   def ensure_all_members(channel)
