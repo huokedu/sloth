@@ -457,6 +457,13 @@ body {
       font-size: 11px;
       content: "6 ";
     }
+
+    &.slothbot:before {
+      color: #38978D;
+      content: "❤︎ ";
+      font-size: 11px;
+      opacity: 1;
+    }
   }
 
   .channel-selected a {
