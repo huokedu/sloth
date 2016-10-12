@@ -25,41 +25,45 @@ class ApplicationController < ActionController::Base
   end
 
   def slothbot(message)
-    if ['hey', 'hi', 'hello', 'yo', 'sup'].include?(message.body)
-      slothbot = User.find_by_username('slothbot')
-      Message.create(
-        author_id: slothbot.id,
-        channel_id: message.channel_id,
-        body: 'hello, human'
-      )
-    elsif ['test', 'testing'].include?(message.body)
-      slothbot = User.find_by_username('slothbot')
-      Message.create(
-        author_id: slothbot.id,
-        channel_id: message.channel_id,
-        body: 'I assure you, everything is working just fine'
-      )
-    elsif message.body === 'slothbot'
-      slothbot = User.find_by_username('slothbot')
-      Message.create(
-        author_id: slothbot.id,
-        channel_id: message.channel_id,
-        body: 'yes, human?'
-      )
-    elsif message.body =~ /slothbot/
-      slothbot = User.find_by_username('slothbot')
-      Message.create(
-        author_id: slothbot.id,
-        channel_id: message.channel_id,
-        body: 'say his name and he shall appear'
-      )
-    elsif message.channel.name =~ /slothbot/
-      slothbot = User.find_by_username('slothbot')
-      Message.create(
-        author_id: slothbot.id,
-        channel_id: message.channel_id,
-        body: Faker::Hacker.say_something_smart
-      )
+    if message.channel.direct
+      if message.channel.name =~ /slothbot/
+        slothbot = User.find_by_username('slothbot')
+        Message.create(
+          author_id: slothbot.id,
+          channel_id: message.channel_id,
+          body: Faker::Hacker.say_something_smart
+        )
+      end
+    else
+      if ['hey', 'hi', 'hello', 'yo', 'sup'].include?(message.body)
+        slothbot = User.find_by_username('slothbot')
+        Message.create(
+          author_id: slothbot.id,
+          channel_id: message.channel_id,
+          body: 'hello, human'
+        )
+      elsif ['test', 'testing'].include?(message.body)
+        slothbot = User.find_by_username('slothbot')
+        Message.create(
+          author_id: slothbot.id,
+          channel_id: message.channel_id,
+          body: 'I assure you, everything is working just fine'
+        )
+      elsif message.body === 'slothbot'
+        slothbot = User.find_by_username('slothbot')
+        Message.create(
+          author_id: slothbot.id,
+          channel_id: message.channel_id,
+          body: 'yes, human?'
+        )
+      elsif message.body =~ /slothbot/
+        slothbot = User.find_by_username('slothbot')
+        Message.create(
+          author_id: slothbot.id,
+          channel_id: message.channel_id,
+          body: 'say his name and he shall appear'
+        )
+      end
     end
   end
 end

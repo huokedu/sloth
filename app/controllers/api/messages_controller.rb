@@ -10,6 +10,8 @@ class Api::MessagesController < ApplicationController
     @message.channel_id = params[:channel_id]
 
     if @message.save
+      ensure_all_members(@message.channel) if @message.channel.direct
+
       other_members = @message.channel.members.reject do |member|
         member.id === current_user.id
       end
@@ -67,5 +69,15 @@ class Api::MessagesController < ApplicationController
   private
   def message_params
     params.require(:message).permit(:body)
+  end
+
+  def ensure_all_members(channel)
+    usernames = channel.name.split(',')
+    member_usernames = channel.members.map(&:username)
+    usernames.each do |username|
+      unless member_usernames.include?(username)
+        channel.members << User.find_by_username(username)
+      end
+    end
   end
 end
