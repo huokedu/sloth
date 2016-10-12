@@ -21,7 +21,9 @@ class Message < ActiveRecord::Base
     class_name: 'User',
     foreign_key: :author_id
   has_many :notifications
-  has_attached_file :image, default_url: "/images/:style/missing.png"
+
+  has_attached_file :image,
+    default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   validates :body, :author, :channel, presence: true
