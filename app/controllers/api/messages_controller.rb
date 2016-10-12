@@ -26,6 +26,9 @@ class Api::MessagesController < ApplicationController
         'new_message',
         {channelId: @message.channel_id}
       )
+
+      slothbot(@message);
+
       render :show
     else
       render json: @message.errors.full_messages

@@ -26,8 +26,8 @@ class SignInForm extends React.Component {
   }
 
   guestSignIn() {
-    this.setState({username: 'albronca', password: 'starwars'});
-    const user = {username: 'albronca', password: 'starwars'};
+    this.setState({username: 'alleycat', password: 'starwars'});
+    const user = {username: 'alleycat', password: 'starwars'};
     this.props.signIn({user});
   }
 

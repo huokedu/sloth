@@ -1,27 +1,66 @@
+#########
+# Users #
+#########
 User.destroy_all
 
-alex = User.create!(username: 'albronca', email: 'a@b.com', password: 'starwars')
-sid = User.create!(username: 'sid', email: 'ice@age.com', password: 'starwars')
-buttercup = User.create!(username: 'buttercup', email: 'butter@cup.net', password: 'starwars')
-pizza = User.create!(username: 'pizza', email: 'papajohn@dominos.com', password: 'pepperoni')
+slothbot = User.create!(
+  username: 'slothbot',
+  email: 'tree@dude.com',
+  password: 'slothisthebestapp.com',
+  avatar: File.open(Rails.root.join('app', 'assets', 'images', 'slothbot.jpg'))
+)
 
+alleycat = User.create!(
+  username: 'alleycat',
+  email: 'a@b.com',
+  password: 'starwars',
+  avatar: Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
+)
+
+stapler = User.create!(
+  username: 'stapler',
+  email: 'secure@paper.com',
+  password: 'starwars',
+  avatar: Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
+)
+
+phone = User.create!(
+  username: 'phone',
+  email: 'phone@att.net',
+  password: 'starwars',
+  avatar: Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
+)
+
+orpheus = User.create!(
+  username: 'orpheus',
+  email: 'iam@thecat.com',
+  password: 'starwars',
+  avatar: Faker::Avatar.image(('a'..'z').to_a.sample(12).join)
+)
+
+############
+# Channels #
+############
 Channel.destroy_all
 
-general = Channel.create!(name: 'general', purpose: 'Discuss the mundane', creator_id: alex.id)
-random = Channel.create!(name: 'random', purpose: 'I thought hurricane season was over!', creator_id: pizza.id)
-foliage = Channel.create!(name: 'foliage', purpose: 'yum food stuff', creator_id: buttercup.id)
+general = Channel.create!(name: 'general', creator_id: slothbot.id)
+random = Channel.create!(name: 'random', creator_id: slothbot.id)
+app_academy = Channel.create!(name: 'app-academy', creator_id: alleycat.id)
 
+###############
+# Memberships #
+###############
 ChannelMembership.destroy_all
 
-[alex, buttercup, pizza].each do |user|
+[slothbot, alleycat, stapler, phone, orpheus].each do |user|
   ChannelMembership.create!(member_id: user.id, channel_id: general.id)
 end
 
-[alex, pizza].each do |user|
+[stapler, phone].each do |user|
   ChannelMembership.create!(member_id: user.id, channel_id: random.id)
 end
 
 
-[sid, buttercup].each do |user|
-  ChannelMembership.create!(member_id: user.id, channel_id: foliage.id)
+[alleycat, orpheus].each do |user|
+  ChannelMembership.create!(member_id: user.id, channel_id: app_academy.id)
 end
