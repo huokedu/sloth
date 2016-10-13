@@ -10,17 +10,14 @@ class Api::MessagesController < ApplicationController
     @message.channel_id = params[:channel_id]
 
     if @message.save
-      ensure_all_members(@message.channel) if @message.channel.direct
+      channel = @message.channel
+      ensure_all_members(channel) if channel.direct
 
-      other_members = @message.channel.members.reject do |member|
-        member.id === current_user.id
-      end
+      other_members = @message.channel.members
+        .where('users.id != ?', current_user.id)
 
       other_members.each do |member|
-        Notification.create({
-          user_id: member.id,
-          message_id: @message.id
-        })
+        Notification.create(user_id: member.id, message_id: @message.id)
       end
 
       Pusher.trigger(
@@ -31,7 +28,7 @@ class Api::MessagesController < ApplicationController
 
       slothbot(@message);
 
-      render :show
+      render json: {}
     else
       render json: @message.errors.full_messages
     end

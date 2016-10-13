@@ -5,7 +5,11 @@ json.set! message.id do
   json.edited message.edited
   json.image_url asset_path(message.image.url)
   json.created_at message.created_at.localtime.strftime("%l:%M %p")
+
+  author = message.author
   json.author do
-    json.partial! 'api/users/user.json.jbuilder', user: message.author
+    json.id author.id
+    json.username author.username
+    json.avatar_url asset_path(author.avatar.url)
   end
 end
