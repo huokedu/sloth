@@ -6,7 +6,8 @@ import { unsubscribeFromChannel,
 import { fetchCurrentMessages,
          createMessage,
          updateMessage,
-         deleteMessage } from '../../actions/message_actions';
+         deleteMessage,
+         receiveSingleMessage } from '../../actions/message_actions';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = ({ channels, messages, currentUser }) => ({
@@ -37,6 +38,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clearNotifications: (channelId) => {
     dispatch(clearNotifications(channelId));
+  },
+  receiveSingleMessage: (message) => {
+    dispatch(receiveSingleMessage(message));
   },
 });
 
