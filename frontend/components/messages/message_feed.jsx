@@ -11,13 +11,6 @@ class MessageFeed extends React.Component {
   }
 
   componentDidMount() {
-    $('.message-gif').load(() => {
-      const end = document.getElementById('messages-end');
-      if (end) {
-        end.scrollIntoView();
-      }
-    });
-
     console.log('Pusher: Initializing!');
     this.pusher = new Pusher('aea52d3bfe768bb2f4bb', {
       encrypted: true
@@ -109,7 +102,7 @@ class MessageFeed extends React.Component {
       );
     }
     else {
-      return <section><div id="messages-end"></div></section>;
+      return <section><div id="messages-end"><p>loading</p></div></section>;
     }
   }
 }
