@@ -38,6 +38,12 @@ class MessageFeed extends React.Component {
     if (end) {
       end.scrollIntoView();
     }
+
+    if (document.getElementsByClassName('notifications').length) {
+      document.title = 'Sloth!!!';
+    } else {
+      document.title = 'Sloth';
+    }
   }
 
   componentWillUnmount() {
