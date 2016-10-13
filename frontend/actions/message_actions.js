@@ -3,7 +3,6 @@ export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const RECEIVE_CURRENT_MESSAGES = 'RECEIVE_CURRENT_MESSAGES';
-export const RECEIVE_SINGLE_MESSAGE = 'RECEIVE_SINGLE_MESSAGE';
 export const REMOVE_SINGLE_MESSAGE = 'REMOVE_SINGLE_MESSAGE';
 
 export const fetchCurrentMessages = (channelId) => ({
@@ -30,11 +29,6 @@ export const updateMessage = (messageParams) => ({
 export const receiveCurrentMessages = (messages) => ({
   type: RECEIVE_CURRENT_MESSAGES,
   messages,
-});
-
-export const receiveSingleMessage = (message) => ({
-  type: RECEIVE_SINGLE_MESSAGE,
-  message
 });
 
 export const removeSingleMessage = (channelId, messageId) => ({

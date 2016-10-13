@@ -27,7 +27,7 @@ const MessageMiddleware = ({dispatch}) => (next) => (action) => {
           const gif = res.data[Math.floor(Math.random() * 25)].images.fixed_height.url;
           action.messageParams.message.image = gif;
           createMessage(
-            (message => dispatch(receiveSingleMessage(message))),
+            (message => undefined),
             (e => console.log(e)),
             action.messageParams
           );
@@ -35,7 +35,7 @@ const MessageMiddleware = ({dispatch}) => (next) => (action) => {
         };
         fetchGif(success, body.substring(7).split(' ').join('+'));
       } else {
-        const success = message => dispatch(receiveSingleMessage(message));
+        const success = message => undefined;
         const error = e => console.log(e);
 
         createMessage(success, error, action.messageParams);
@@ -44,7 +44,7 @@ const MessageMiddleware = ({dispatch}) => (next) => (action) => {
       break;
     }
     case UPDATE_MESSAGE: {
-      const success = message => dispatch(receiveSingleMessage(message));
+      const success = message => undefined;
       const error = e => console.log(e);
 
       updateMessage(success, error, action.messageParams);
