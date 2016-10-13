@@ -31,9 +31,10 @@ class MessageFeed extends React.Component {
       const clear = new Promise(() => {
         this.props.clearNotifications(this.props.currentChannel);
       });
-      clear.then(() => {
-        this.props.fetchSubscribedChannels();
-      });
+      clear.then(
+        (() => this.props.fetchSubscribedChannels()),
+        (() => this.props.fetchSubscribedChannels())
+      );
     });
   }
 
