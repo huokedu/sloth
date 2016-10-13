@@ -59,7 +59,22 @@ class Api::MessagesController < ApplicationController
       Pusher.trigger(
         "sloth",
         'new_message',
-        {channelId: @message.channel_id}
+        {
+          channelId: @message.channel_id,
+          message: {
+            id: @message.id,
+            body: @message.body,
+            image_url: @message.image.url,
+            edited: @message.edited,
+            created_at: @message.created_at.localtime.strftime("%l:%M %p"),
+            channelId: @message.channel_id,
+            author: {
+              id: current_user.id,
+              avatar_url: current_user.avatar.url,
+              username: current_user.username
+            }
+          }.to_json
+        }
       )
 
       render :show
