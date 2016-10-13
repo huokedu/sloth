@@ -28,13 +28,7 @@ class MessageFeed extends React.Component {
     channel.bind('new_message', (data) => {
       console.log('Pusher: fetching new messages...');
       this.props.fetchCurrentMessages(data.channelId);
-      const clear = new Promise(() => {
-        this.props.clearNotifications(this.props.currentChannel);
-      });
-      clear.then(
-        (() => this.props.fetchSubscribedChannels()),
-        (() => this.props.fetchSubscribedChannels())
-      );
+      this.props.fetchSubscribedChannels();
     });
   }
 
