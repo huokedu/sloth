@@ -8,19 +8,19 @@ Sloth is a full-stack web application inspired by Slack. It utilizes Ruby on Rai
 
 ### Live chat
 
-![Live chat example](/docs/live-chat.gif)
+![Live chat example](docs/live-chat.gif)
 
 Messages are stored at the database level with associated an `user_id` and `channel_id`. Message authors can freely edit and delete their own messages. Realtime updating is accomplished using Pusher. A single instance of Pusher is constructed on each visit to the message feed component. Based on the data returned by the Pusher event, a client can update their feed and notifications.
 
 ### Channels
 
-![Channels example](/docs/channels.gif)
+![Channels example](docs/channels.gif)
 
 Messages are organized by their parent Channels. All users can freely create and join channels. Users will only keep track of messages and notifications for channels in which they are members.
 
 ### Direct messages
 
-![Direct messaging example](/docs/direct-messaging.gif)
+![Direct messaging example](docs/direct-messaging.gif)
 
 Direct messages can only be seen by a specified group of members. The number of members per channel is limited to 7 users. Unlike regular channels, which can be muted, direct messages will always notify all specified members.
 
@@ -30,7 +30,7 @@ Along with updating the message feed, every message created generates a notifica
 
 ### Giphy integration
 
-![Giphy example](/docs/giphy.gif)
+![Giphy example](docs/giphy.gif)
 
 By typing the command `/giphy` followed by a query string, users can generate a random related GIF from Giphy's library. This is accomplished using Giphy's public API.
 
