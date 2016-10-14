@@ -50,6 +50,7 @@ class ChannelsIndex extends React.Component {
       modalOpen: true,
       modalContent: (
         <ChannelList
+          currentUser={this.props.currentUser}
           allChannels={this.props.channels.allChannels}
           subscribeToChannel={this.props.subscribeToChannel}
           closeModal={this.closeModal} />

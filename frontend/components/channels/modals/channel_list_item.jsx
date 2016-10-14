@@ -1,13 +1,22 @@
 import React from 'react';
 
-const ChannelListItem = ({ channel, subscribeToChannel, closeModal }) => {
+const ChannelListItem = ({ channel, subscribeToChannel, closeModal, subscribedChannels }) => {
   const handleSubscribe = () => {
     subscribeToChannel(channel.id);
     closeModal();
   };
 
+  const channelListType = () => {
+    const subIds = subscribedChannels.map(subs => subs.id);
+    if (subIds.indexOf(channel.id) === -1) {
+      return "join";
+    } else {
+      return "open";
+    }
+  };
+
   return(
-    <li className="channel-search-item">
+    <li className={"channel-search-item " + channelListType()}>
       <button onClick={handleSubscribe}>
         <h3 className="channel-search-name">{channel.name}</h3>
         <small className="channel-search-info">

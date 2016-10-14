@@ -710,13 +710,29 @@ body {
       border: 1px solid #d3ecfa;
       border-radius: 6px;
 
-      &:after {
-        color: #439fe0;
-        position: absolute;
-        content: "Join Channel";
-        right: 20px;
-        top: 20px;
-      }
+
+    }
+  }
+
+  .join:hover {
+    &:after {
+      color: #439fe0;
+      position: absolute;
+      pointer-events: none;
+      content: "Join Channel";
+      right: 20px;
+      top: 20px;
+    }
+  }
+
+  .open:hover {
+    &:after {
+      color: #439fe0;
+      position: absolute;
+      pointer-events: none;
+      content: "Open Channel";
+      right: 20px;
+      top: 20px;
     }
   }
 
@@ -728,8 +744,9 @@ body {
       opacity: .6;
     }
   }
-
 }
+
+
 
 .channel-search-info {
   font-style: italic;
