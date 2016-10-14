@@ -25,7 +25,7 @@ class UserDropdown extends React.Component {
         top: 56,
         left: 10,
         width: 270,
-        height: 140,
+        height: 120,
         zIndex: 11,
         borderRadius: 6,
         border: '1px solid rgba(0,0,0,.15)',
@@ -61,9 +61,6 @@ class UserDropdown extends React.Component {
             <h2>{username}</h2>
             <h3>@{username}</h3>
             <ul>
-              <li>
-                <button>Profile</button>
-              </li>
               <li>
                 <button
                   onClick={this.props.signOut}>Sign out of Sloth</button>
