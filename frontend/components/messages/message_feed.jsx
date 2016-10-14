@@ -2,12 +2,18 @@
 import React from 'react';
 import Message from './message';
 import MessageForm from './message_form';
+import PurposeForm from './purpose_form';
 
 class MessageFeed extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+    this.togglePurposeForm = this.togglePurposeForm.bind(this);
+
+    this.state = {
+      purposeForm: false,
+    };
   }
 
   componentDidMount() {
@@ -54,6 +60,10 @@ class MessageFeed extends React.Component {
     console.log('Pusher: Goodbye!');
   }
 
+  togglePurposeForm() {
+    this.setState({purposeForm: !this.state.purposeForm});
+  }
+
   render() {
     if (this.props.allChannels[this.props.currentChannel]) {
       const thisChannel = this.props.allChannels[this.props.currentChannel];
@@ -75,16 +85,28 @@ class MessageFeed extends React.Component {
         }
       }
 
+      let purpose;
+      // if (this.state.purposeForm) {
+      //   purpose = (
+      //     <PurposeForm
+      //       togglePurposeForm={this.togglePurposeForm}
+      //       purpose={this.props.currentChannel.purpose} />
+      //   );
+      // } else {
+        purpose = (
+          <small>
+            {thisChannel.members.length} members
+            {thisChannel.purpose ? ` | ${thisChannel.purpose}` : ''}
+          </small>
+        );
+
       return(
         <section className="message-feed">
           <header>
             <h2 className={'direct-' + thisChannel.direct}>
               {thisChannel.name}
             </h2>
-            <small>
-              {thisChannel.members.length} members
-              {thisChannel.purpose ? ` | ${thisChannel.purpose}` : ''}
-            </small>
+            {purpose}
             <button
               className="leave-channel-button"
               onClick={this.handleUnsubscribe}>Leave this channel</button>

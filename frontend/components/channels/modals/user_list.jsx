@@ -15,10 +15,12 @@ class UserList extends React.Component {
   }
 
   addMember(member) {
-    this.setState({
-      [member.id]: member,
-      input: '',
-    });
+    if (Object.keys(this.state).length <= 6) {
+      this.setState({
+        [member.id]: member,
+        input: '',
+      });
+    }
   }
 
   removeMember(member) {

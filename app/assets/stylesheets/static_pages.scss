@@ -939,8 +939,10 @@ body {
   height: 400px;
   color: #555459;
   margin: 0 auto;
+  overflow: auto;
 
   .user-list-item {
+    border-top: 1px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
     border-bottom: 1px solid #e8e8e8;
@@ -1013,4 +1015,19 @@ body {
   display: block;
   padding: 10px;
   height: 200px;
+}
+
+.purpose-edit {
+  &:hover {
+    transition: all .8s ease;
+    text-shadow: 0px 0px 5px #666;
+    cursor: pointer;
+
+    &:after {
+      content: 'Edit channel purpose';
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
 }
