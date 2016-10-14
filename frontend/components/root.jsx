@@ -29,10 +29,7 @@ const Root = ({ store }) => {
     redirectUnlessLoggedIn();
     store.dispatch(clearNotifications(nextState.params.channelId));
     store.dispatch(switchChannel(nextState.params.channelId));
-
-    if (!store.getState().messages[nextState.params.channelId]) {
-      store.dispatch(fetchCurrentMessages(nextState.params.channelId));
-    }
+    store.dispatch(fetchCurrentMessages(nextState.params.channelId));
   }
 
   return (
